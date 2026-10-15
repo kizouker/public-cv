@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rickard Åberg — AI-Augmented Quality Architect</title>
+<meta name="description" content="20+ years across test leadership, solution architecture, development, release/CM, and DevOps coaching — now applied to AI-assisted software delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f5f2;
+    --panel: #ffffff;
+    --fg: #1c1b19;
+    --muted: #6b6862;
+    --border: #d8d4cb;
+    --accent: #1f6f78;
+    --accent-soft: #e4f0ef;
+    --agent: #7a4f2b;
+    --agent-soft: #f3e8dd;
+    --feedback: #b5482f;
+    --actor: #7a4fb0;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Source Sans 3", "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.site .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 12px; }
+  header.site nav { display: flex; gap: 18px; font-size: 0.88rem; flex-wrap: wrap; }
+  header.site nav a { color: var(--muted); text-decoration: none; }
+  header.site nav a:hover { color: var(--fg); }
+  header.site .name { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.05rem; }
+
+  .hero { padding-block: 56px 40px; }
+  .hero h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .hero .subtitle { color: var(--muted); font-size: 1.1rem; margin: 0 0 18px; max-width: 60ch; }
+  .hero .quote {
+    font-family: "Fraunces", serif; font-style: italic; font-size: 1rem;
+    color: var(--fg); border-left: 3px solid var(--accent); padding-left: 14px;
+    margin: 0 0 24px; max-width: 60ch;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff; text-decoration: none;
+    padding: 10px 18px; border-radius: 999px; font-weight: 600; font-size: 0.92rem;
+  }
+  .btn:hover { opacity: 0.9; }
+  .btn.secondary {
+    background: transparent; color: var(--accent); border: 1.5px solid var(--accent);
+  }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  section { padding-block: 36px; border-top: 1px solid var(--border); }
+  section h2 {
+    font-family: "Fraunces", serif; font-size: 1.5rem; font-weight: 600;
+    margin: 0 0 18px;
+  }
+  section > .wrap > p.lead { color: var(--muted); max-width: 68ch; margin: -8px 0 20px; }
+  .persona-heading {
+    font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 600;
+    margin: 34px 0 6px;
+  }
+
+  .summary p { max-width: 72ch; margin: 0 0 14px; }
+
+  .role-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px;
+  }
+  .role-card .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--accent); background: var(--accent-soft);
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 8px;
+  }
+  .role-card h3 { margin: 0 0 8px; font-size: 1.02rem; }
+  .role-card p { margin: 0 0 6px; font-size: 0.88rem; }
+  .role-card p b { color: var(--fg); }
+  .role-card .grounded { color: var(--muted); font-size: 0.82rem; }
+
+  .detail-panel {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin-bottom: 18px; min-height: 108px;
+  }
+  .detail-panel .tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--accent); background: var(--accent-soft);
+    padding: 3px 9px; border-radius: 999px; margin-bottom: 8px;
+  }
+  .detail-panel h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .detail-panel p { margin: 0 0 6px; font-size: 0.92rem; max-width: 68ch; }
+  .detail-panel p b { color: var(--fg); }
+  .detail-panel .grounded { color: var(--muted); font-size: 0.85rem; }
+  .diagram-hint { color: var(--muted); font-size: 0.82rem; margin: 10px 0 16px; }
+
+  .ai-team-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .chip {
+    display: inline-block; padding: 4px 11px; border-radius: 999px;
+    border: 1px solid var(--border); font-size: 0.82rem; background: var(--bg);
+  }
+
+  figure.diagram {
+    margin: 0; background: var(--panel); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px clamp(8px,3vw,24px) 6px;
+  }
+  figure.diagram svg { width: 100%; height: auto; display: block; }
+  figure.diagram text { fill: currentColor; }
+  .role-box rect, .role-box circle { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; transition: stroke-width 0.15s, fill 0.15s; }
+  .agent-box rect, .agent-box circle { fill: var(--agent-soft); stroke: var(--agent); stroke-width: 1.5; transition: stroke-width 0.15s, fill 0.15s; }
+  .node-box { cursor: pointer; }
+  .node-box:hover rect, .node-box:hover circle, .node-box:focus-visible rect, .node-box:focus-visible circle { stroke-width: 2.5; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.12)); }
+  .node-box:hover, .node-box:focus-visible { transform: translateY(-2px); transform-box: fill-box; transform-origin: center; }
+  .node-box:focus-visible rect, .node-box:focus-visible circle { outline: none; stroke: var(--feedback); }
+  .node-box.active.role-box rect, .node-box.active.role-box circle { stroke-width: 3; fill: var(--accent); }
+  .node-box.active.role-box text { fill: #fff; }
+  .node-box.active.agent-box rect, .node-box.active.agent-box circle { stroke-width: 3; fill: var(--agent); }
+  .node-box.active.agent-box text { fill: #fff; }
+  .node-title { font-size: 16.5px; font-weight: 700; }
+  .node-title.small { font-size: 12px; font-weight: 600; }
+  .verify-box rect, .verify-box circle { stroke-width: 2.5; }
+  .persona-line { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 4 4; opacity: 0.8; }
+  .persona-diagram { margin-top: 22px; }
+
+  .test-levels { list-style: none; margin: 26px 0 0; padding: 0; counter-reset: level; }
+  .test-levels li {
+    counter-increment: level;
+    display: grid; grid-template-columns: 28px 1fr auto; align-items: baseline; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .test-levels li:last-child { border-bottom: none; }
+  .test-levels li::before {
+    content: counter(level); font-family: "Fraunces", serif; font-weight: 700;
+    color: var(--accent); font-size: 1rem;
+  }
+  .test-levels .what b { display: block; font-size: 0.98rem; }
+  .test-levels .what span { color: var(--muted); font-size: 0.86rem; }
+  .test-levels .actor {
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--accent); background: var(--accent-soft); padding: 3px 9px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .test-levels .actor.customer { color: var(--feedback); background: color-mix(in srgb, var(--feedback) 14%, transparent); }
+  .test-levels .actor.agent { color: var(--agent); background: var(--agent-soft); }
+
+  .untested-box rect { fill: transparent; stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .untested-box text { fill: var(--muted); }
+  .tested-box rect { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .tested-box.final rect { fill: var(--accent); }
+  .tested-box.final text { fill: #fff; }
+  .compose-label { font-size: 10.5px; fill: var(--muted); font-style: italic; }
+  .compose-label.tiny { font-size: 8.5px; font-style: normal; }
+  .actor-token { transition: transform 0.4s ease; pointer-events: none; }
+  .actor-token .actor-bg { fill: var(--actor); stroke: var(--panel); stroke-width: 3; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.25)); }
+  .actor-token .actor-head, .actor-token .actor-body { fill: #fff; }
+  .node-hint { font-size: 9px; fill: var(--muted); letter-spacing: 0.03em; }
+  .node-box.active .node-hint { fill: #fff; opacity: 0.85; }
+  .edge-label { font-size: 11px; fill: var(--muted); }
+  .edge-label.feedback-label { fill: var(--feedback); font-weight: 600; }
+  .flow-line { stroke: var(--fg); stroke-width: 1.6; fill: none; opacity: 0.75; }
+  .iterate-line { stroke: var(--muted); stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+  .feedback-line { stroke: var(--feedback); stroke-width: 2.2; fill: none; }
+  figcaption { color: var(--muted); font-size: 0.85rem; padding: 10px 4px 16px; max-width: 74ch; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li {
+    display: grid; grid-template-columns: 150px 1fr; gap: 14px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline .when { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+  .timeline .what b { display: block; font-size: 0.98rem; }
+  .timeline .what span { color: var(--muted); font-size: 0.86rem; }
+
+  .tools-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .tools-grid .col h4 {
+    margin: 0 0 8px; font-size: 0.82rem; text-transform: uppercase;
+    letter-spacing: 0.04em; color: var(--muted);
+  }
+  .tools-grid ul { margin: 0; padding-left: 18px; font-size: 0.9rem; }
+  .tools-grid li { margin-bottom: 3px; }
+  .tools-note { color: var(--muted); font-size: 0.82rem; margin-top: 18px; }
+
+  .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px; }
+  .cert { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+  .cert b { display: block; font-size: 0.92rem; }
+  .cert span { color: var(--muted); font-size: 0.82rem; }
+
+  footer { padding-block: 40px 60px; text-align: center; }
+  footer p { color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <span class="name">Rickard Åberg</span>
+    <nav>
+      <a href="#role-fit">Process</a>
+      <a href="#test-process">Test Process</a>
+      <a href="#summary">Summary</a>
+      <a href="#experience">Experience</a>
+      <a href="#tools">Tools</a>
+      <a href="#certifications">Certifications</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>AI-Augmented Quality Architect</h1>
+    <p class="subtitle">Test · Architecture · Development · CM &amp; DevOps — full-lifecycle ownership, now applied to AI-assisted software delivery.</p>
+    <p class="quote">“If you fall one-hundred times and then get up, the 101st time you never lost.”</p>
+    <div class="btn-row">
+      <a class="btn" href="https://www.linkedin.com/in/rickard-%C3%A5berg-9866891/" target="_blank" rel="noopener">Connect on LinkedIn →</a>
+      <a class="btn secondary" href="mailto:raberg@duck.com">Email me</a>
+    </div>
+  </div>
+</section>
+
+<section id="role-fit">
+  <div class="wrap">
+    <h2>How This Role Fits the Overall Picture</h2>
+    <p class="lead">Product Owner, Architect, and Release &amp; Ops are Rickard's alone. Two agents work in parallel on
+    code and tests; Rickard and Claude jointly verify what they produce — the heaviest checkpoint in the loop.</p>
+
+    <div id="detail-panel" class="detail-panel"></div>
+    <p class="diagram-hint">↑ Hover or click any box below. The small "You" badge moves to wherever Rickard is
+    actually hands-on — it stays put over the parallel agent boxes, since that work is supervised, not done by hand.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 1550 270" role="img" aria-label="A change moves from Product Owner to Architect, then fans out to two agents working in parallel — Codex writing code and Gemini writing tests — which converge into a larger Verify step where Claude and Rickard jointly check the result, with a rework loop back to the agents when it isn't good enough. A DevOps Engineer agent then runs CI/CD and deploys, before Release and Ops, whose feedback loops back to Product Owner. A You badge marks which human-held box Rickard is currently at.">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+          <marker id="arrow-fb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--feedback)" />
+          </marker>
+        </defs>
+
+        <g class="role-box node-box" data-key="productowner" tabindex="0" role="button" aria-label="Product Owner">
+          <rect x="45" y="90" width="170" height="70" rx="10" />
+          <text x="130" y="131" text-anchor="middle" class="node-title">Product Owner</text>
+        </g>
+        <g class="role-box node-box" data-key="architect" tabindex="0" role="button" aria-label="Architect">
+          <rect x="295" y="90" width="170" height="70" rx="10" />
+          <text x="380" y="131" text-anchor="middle" class="node-title">Architect</text>
+        </g>
+
+        <g class="agent-box node-box" data-key="codex" tabindex="0" role="button" aria-label="Codex writes code">
+          <rect x="545" y="90" width="170" height="32" rx="8" />
+          <text x="630" y="111" text-anchor="middle" class="node-title small">Codex — code</text>
+        </g>
+        <g class="agent-box node-box" data-key="gemini" tabindex="0" role="button" aria-label="Gemini writes tests">
+          <rect x="545" y="128" width="170" height="32" rx="8" />
+          <text x="630" y="149" text-anchor="middle" class="node-title small">Gemini — tests</text>
+        </g>
+
+        <g class="role-box node-box verify-box" data-key="verify" tabindex="0" role="button" aria-label="Verify, Claude and You">
+          <rect x="835" y="84" width="190" height="82" rx="12" />
+          <text x="930" y="120" text-anchor="middle" class="node-title">Verify</text>
+          <text x="930" y="140" text-anchor="middle" class="node-title small">Claude + You</text>
+        </g>
+
+        <g class="agent-box node-box" data-key="devopseng" tabindex="0" role="button" aria-label="DevOps Engineer agent">
+          <rect x="1075" y="90" width="170" height="70" rx="10" />
+          <text x="1160" y="131" text-anchor="middle" class="node-title">DevOps Engineer</text>
+        </g>
+
+        <g class="role-box node-box" data-key="releaseops" tabindex="0" role="button" aria-label="Release and Ops">
+          <rect x="1325" y="90" width="170" height="70" rx="10" />
+          <text x="1410" y="131" text-anchor="middle" class="node-title">Release &amp; Ops</text>
+        </g>
+
+        <line x1="215" y1="125" x2="291" y2="125" class="flow-line" marker-end="url(#arrow)" />
+        <text x="253" y="117" text-anchor="middle" class="edge-label">requirements</text>
+        <line x1="465" y1="125" x2="541" y2="125" class="flow-line" marker-end="url(#arrow)" />
+        <text x="503" y="117" text-anchor="middle" class="edge-label">architecture</text>
+
+        <line x1="469" y1="110" x2="541" y2="106" class="flow-line" marker-end="url(#arrow)" />
+        <line x1="469" y1="140" x2="541" y2="144" class="flow-line" marker-end="url(#arrow)" />
+
+        <line x1="719" y1="106" x2="839" y2="123" class="flow-line" marker-end="url(#arrow)" />
+        <line x1="719" y1="144" x2="839" y2="127" class="flow-line" marker-end="url(#arrow)" />
+        <text x="780" y="90" text-anchor="middle" class="edge-label">parallel work</text>
+
+        <path d="M 930 166 L 930 205 L 630 205 L 630 164" class="iterate-line" marker-end="url(#arrow)" />
+        <text x="780" y="199" text-anchor="middle" class="edge-label">rework</text>
+
+        <line x1="1029" y1="125" x2="1071" y2="125" class="flow-line" marker-end="url(#arrow)" />
+        <text x="1050" y="117" text-anchor="middle" class="edge-label">verified</text>
+
+        <line x1="1249" y1="125" x2="1321" y2="125" class="flow-line" marker-end="url(#arrow)" />
+        <text x="1285" y="117" text-anchor="middle" class="edge-label">deployed</text>
+
+        <path d="M 1410 160 L 1410 235 L 130 235 L 130 164" class="feedback-line" marker-end="url(#arrow-fb)" />
+        <text x="770" y="229" text-anchor="middle" class="edge-label feedback-label">feedback → next idea</text>
+
+        <g id="actor-token" class="actor-token" role="img" aria-label="Rickard" transform="translate(130,86)">
+          <circle class="actor-bg" r="20" />
+          <circle class="actor-head" cy="-6" r="7" />
+          <path class="actor-body" d="M -12 10 Q -12 -4 0 -4 Q 12 -4 12 10 Z" />
+        </g>
+      </svg>
+      <figcaption>
+        Teal boxes are human-held roles, brown boxes are AI agents. Verify is drawn larger because it
+        carries the heaviest responsibility — Claude and Rickard jointly checking what Codex and Gemini
+        produced, sending work back (the dashed loop) when it isn't good enough. DevOps Engineer is another
+        agent, running CI/CD and provisioning cloud environments when needed, supervised by Release &amp;
+        Ops rather than operated by hand. The small circular "You" badge marks which human-held step
+        Rickard is actually at.
+      </figcaption>
+    </figure>
+
+    <h3 class="persona-heading">The Same Roles, as a Persona</h3>
+    <p class="lead">One person, orbiting a constant collaborator — which hat is on changes what "working with
+    Claude" actually means.</p>
+
+    <figure class="diagram persona-diagram">
+      <svg viewBox="0 0 500 500" role="img" aria-label="Rickard's persona orbits a constant Claude at the center, taking the position of Product Owner, Architect, Verify, or Release and Ops around it. Each position shows a different relationship to Claude: briefing it, constraining it, checking its work, or directing what its deploy agent does.">
+        <g class="agent-box" aria-hidden="true">
+          <circle cx="250" cy="250" r="52" />
+          <text x="250" y="256" text-anchor="middle" class="node-title">Claude</text>
+        </g>
+
+        <line x1="250" y1="198" x2="250" y2="138" class="persona-line" />
+        <text x="250" y="168" text-anchor="middle" class="edge-label">briefs</text>
+        <line x1="302" y1="250" x2="362" y2="250" class="persona-line" />
+        <text x="332" y="242" text-anchor="middle" class="edge-label">constrains</text>
+        <line x1="250" y1="302" x2="250" y2="355" class="persona-line" />
+        <text x="250" y="332" text-anchor="middle" class="edge-label">checks together</text>
+        <line x1="198" y1="250" x2="138" y2="250" class="persona-line" />
+        <text x="168" y="242" text-anchor="middle" class="edge-label">directs deploy</text>
+
+        <g class="role-box node-box" data-key="productowner" tabindex="0" role="button" aria-label="Product Owner">
+          <circle cx="250" cy="80" r="58" />
+          <text x="250" y="76" text-anchor="middle" class="node-title small">Product</text>
+          <text x="250" y="92" text-anchor="middle" class="node-title small">Owner</text>
+        </g>
+        <g class="role-box node-box" data-key="architect" tabindex="0" role="button" aria-label="Architect">
+          <circle cx="420" cy="250" r="58" />
+          <text x="420" y="256" text-anchor="middle" class="node-title small">Architect</text>
+        </g>
+        <g class="role-box node-box verify-box" data-key="verify" tabindex="0" role="button" aria-label="Verify, Claude and You">
+          <circle cx="250" cy="420" r="65" />
+          <text x="250" y="416" text-anchor="middle" class="node-title small">Verify</text>
+          <text x="250" y="432" text-anchor="middle" class="node-title small">Claude + You</text>
+        </g>
+        <g class="role-box node-box" data-key="releaseops" tabindex="0" role="button" aria-label="Release and Ops">
+          <circle cx="80" cy="250" r="58" />
+          <text x="80" y="246" text-anchor="middle" class="node-title small">Release &amp;</text>
+          <text x="80" y="262" text-anchor="middle" class="node-title small">Ops</text>
+        </g>
+
+        <g id="actor-token-persona" class="actor-token" role="img" aria-label="Rickard" transform="translate(291,39)">
+          <circle class="actor-bg" r="20" />
+          <circle class="actor-head" cy="-6" r="7" />
+          <path class="actor-body" d="M -12 10 Q -12 -4 0 -4 Q 12 -4 12 10 Z" />
+        </g>
+      </svg>
+      <figcaption>
+        Claude stays fixed at the center — the constant collaborator. The "You" badge orbits to whichever
+        hat is currently active; hover or click a role here or in the flow diagram above, they share the
+        same detail panel.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="test-process">
+  <div class="wrap">
+    <h2>Zoom In: From Module to Release</h2>
+    <p class="lead">What "Claude Code" and "Verify" in the flow above actually look like up close, once work
+    splits across several modules — and what happens after, through every test level, up to the customer.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 940 500" role="img" aria-label="Claude breaks a change into module tickets, delegates each to a parallel coding agent, an Unit-Test Agent tests every module and sends bugs back to fix, then the change becomes a pull request that goes through a Code Review loop with Claude and Rickard before merging onward to Release and Ops.">
+        <defs>
+          <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+        </defs>
+
+        <g class="agent-box node-box" data-key="moduleplanning" tabindex="0" role="button" aria-label="Claude breaks into modules">
+          <rect x="320" y="25" width="260" height="70" rx="10" />
+          <text x="450" y="55" text-anchor="middle" class="node-title small">Claude — Break Into</text>
+          <text x="450" y="72" text-anchor="middle" class="node-title small">Modules (Tickets)</text>
+        </g>
+
+        <line x1="450" y1="95" x2="150" y2="146" class="flow-line" marker-end="url(#arrow2)" />
+        <line x1="450" y1="95" x2="450" y2="146" class="flow-line" marker-end="url(#arrow2)" />
+        <line x1="450" y1="95" x2="750" y2="146" class="flow-line" marker-end="url(#arrow2)" />
+
+        <g class="agent-box node-box" data-key="moduleagents" tabindex="0" role="button" aria-label="Codex, module 1">
+          <rect x="30" y="150" width="240" height="60" rx="10" />
+          <text x="150" y="185" text-anchor="middle" class="node-title small">Codex — Module 1</text>
+        </g>
+        <g class="agent-box node-box" data-key="moduleagents" tabindex="0" role="button" aria-label="Gemini, module 2">
+          <rect x="330" y="150" width="240" height="60" rx="10" />
+          <text x="450" y="185" text-anchor="middle" class="node-title small">Gemini — Module 2</text>
+        </g>
+        <g class="agent-box node-box" data-key="moduleagents" tabindex="0" role="button" aria-label="Mistral, module 3">
+          <rect x="630" y="150" width="240" height="60" rx="10" />
+          <text x="750" y="185" text-anchor="middle" class="node-title small">Mistral — Module 3</text>
+        </g>
+
+        <line x1="150" y1="210" x2="400" y2="270" class="flow-line" marker-end="url(#arrow2)" />
+        <line x1="450" y1="210" x2="450" y2="270" class="flow-line" marker-end="url(#arrow2)" />
+        <line x1="750" y1="210" x2="500" y2="270" class="flow-line" marker-end="url(#arrow2)" />
+
+        <g class="agent-box node-box" data-key="unittestagent" tabindex="0" role="button" aria-label="Unit-Test Agent">
+          <rect x="320" y="270" width="260" height="70" rx="10" />
+          <text x="450" y="311" text-anchor="middle" class="node-title">Unit-Test Agent</text>
+        </g>
+
+        <path d="M 580 305 L 900 305 L 900 180 L 874 180" class="iterate-line" marker-end="url(#arrow2)" />
+        <text x="740" y="297" text-anchor="middle" class="edge-label">bug → fix</text>
+
+        <line x1="450" y1="340" x2="450" y2="378" class="flow-line" marker-end="url(#arrow2)" />
+        <text x="450" y="364" text-anchor="middle" class="edge-label">opens PR</text>
+
+        <g class="role-box node-box verify-box" data-key="verify" tabindex="0" role="button" aria-label="Code Review, Claude and You">
+          <rect x="305" y="380" width="290" height="82" rx="12" />
+          <text x="450" y="416" text-anchor="middle" class="node-title">Code Review</text>
+          <text x="450" y="436" text-anchor="middle" class="node-title small">Claude + You</text>
+        </g>
+
+        <path d="M 305 421 L 10 421 L 10 180 L 26 180" class="iterate-line" marker-end="url(#arrow2)" />
+        <text x="155" y="413" text-anchor="middle" class="edge-label">request changes</text>
+
+        <line x1="595" y1="421" x2="750" y2="421" class="flow-line" marker-end="url(#arrow2)" />
+        <text x="672" y="413" text-anchor="middle" class="edge-label">merge</text>
+        <text x="672" y="445" text-anchor="middle" class="edge-label">→ Release &amp; Ops</text>
+      </svg>
+      <figcaption>
+        Brown boxes are agents, each handling one module in parallel. Both dashed loops are local and fast —
+        bugs go straight back to the module's own agent, review comments go back the same way — nothing
+        reaches Release &amp; Ops until Code Review (the same Verify step from the flow diagram above) signs off.
+      </figcaption>
+    </figure>
+
+    <h3 class="persona-heading">Then Through Every Test Level</h3>
+    <p class="lead">Different actors own different levels — automation gets denser near the code, people get
+    involved as the scope widens toward the customer.</p>
+
+    <ol class="test-levels">
+      <li>
+        <span class="what"><b>Unit Test</b><span>Every function, in isolation, immediately after it's written — coverage tracked and enforced, not just "tests pass".</span></span>
+        <span class="actor agent">Unit-Test Agent</span>
+      </li>
+      <li>
+        <span class="what"><b>Component / Function Test</b><span>Does the whole module do what its ticket asked for?</span></span>
+        <span class="actor agent">Module Agent + Test Agent</span>
+      </li>
+      <li>
+        <span class="what"><b>System Function Test (SFT)</b><span>Does the feature work end-to-end inside the running system?</span></span>
+        <span class="actor">Tester (Claude + You)</span>
+      </li>
+      <li>
+        <span class="what"><b>System Integration Test</b><span>Does this change break how other systems talk to it?</span></span>
+        <span class="actor">Tester (Claude + You)</span>
+      </li>
+      <li>
+        <span class="what"><b>End-to-End Test</b><span>Full user flows across the whole system, browser to backend.</span></span>
+        <span class="actor agent">E2E Test Agent</span>
+      </li>
+      <li>
+        <span class="what"><b>Acceptance Test / Sprint Demo</b><span>Runs UAT, or simply watches the sprint demo and reacts live.</span></span>
+        <span class="actor customer">Customer</span>
+      </li>
+    </ol>
+
+    <h3 class="persona-heading">How Tested Pieces Compose Upward</h3>
+    <p class="lead">A module starts untested — dashed. Its unit test is a client that calls it from the
+    outside; once it passes, the module becomes a filled, solid square. Several tested squares together
+    form a component, which is itself untested (dashed) until its own test runs — and the pattern repeats
+    all the way to e2e.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 1080 170" role="img" aria-label="Four modules -- Client, API and Server, Frontend, and Backend -- start as dashed, untested squares. Each one's unit test, acting as a client to it, turns it into a solid, filled, tested square. The four solid squares combine inside a dashed, untested Component box, which its own component test turns solid. Several solid components combine inside a dashed, untested Integration box, which an integration test turns solid, and a final end-to-end test turns the whole thing into a solid, verified state.">
+        <defs>
+          <marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor" />
+          </marker>
+        </defs>
+
+        <g class="untested-box">
+          <rect x="20" y="20" width="30" height="30" />
+          <rect x="58" y="20" width="30" height="30" />
+          <rect x="20" y="58" width="30" height="30" />
+          <rect x="58" y="58" width="30" height="30" />
+        </g>
+        <text x="20" y="103" class="compose-label tiny">Client</text>
+        <text x="58" y="103" class="compose-label tiny">API/Server</text>
+        <text x="20" y="118" class="compose-label tiny">Frontend</text>
+        <text x="58" y="118" class="compose-label tiny">Backend</text>
+
+        <line x1="92" y1="54" x2="140" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="116" y="45" text-anchor="middle" class="compose-label">unit test</text>
+        <text x="116" y="66" text-anchor="middle" class="compose-label">(client)</text>
+
+        <g class="tested-box">
+          <rect x="144" y="20" width="30" height="30" />
+          <rect x="182" y="20" width="30" height="30" />
+          <rect x="144" y="58" width="30" height="30" />
+          <rect x="182" y="58" width="30" height="30" />
+        </g>
+        <text x="163" y="104" text-anchor="middle" class="compose-label">4 tested units</text>
+
+        <line x1="216" y1="54" x2="264" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="240" y="45" text-anchor="middle" class="compose-label">combine</text>
+
+        <g class="untested-box">
+          <rect x="268" y="8" width="94" height="94" rx="6" />
+        </g>
+        <g class="tested-box">
+          <rect x="285" y="25" width="26" height="26" />
+          <rect x="317" y="25" width="26" height="26" />
+          <rect x="285" y="57" width="26" height="26" />
+          <rect x="317" y="57" width="26" height="26" />
+        </g>
+        <text x="315" y="116" text-anchor="middle" class="compose-label">Component (untested)</text>
+
+        <line x1="366" y1="54" x2="410" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="388" y="45" text-anchor="middle" class="compose-label">component</text>
+        <text x="388" y="66" text-anchor="middle" class="compose-label">test</text>
+
+        <g class="tested-box">
+          <rect x="414" y="8" width="94" height="94" rx="6" />
+        </g>
+        <text x="461" y="55" text-anchor="middle" class="node-title small">&#10003;</text>
+        <text x="461" y="116" text-anchor="middle" class="compose-label">Component, tested</text>
+
+        <line x1="512" y1="54" x2="560" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="536" y="45" text-anchor="middle" class="compose-label">integrate</text>
+        <text x="536" y="66" text-anchor="middle" class="compose-label">×N</text>
+
+        <g class="untested-box">
+          <rect x="564" y="0" width="116" height="112" rx="6" />
+        </g>
+        <g class="tested-box">
+          <rect x="580" y="12" width="30" height="30" />
+          <rect x="618" y="12" width="30" height="30" />
+          <rect x="580" y="48" width="30" height="30" />
+          <rect x="618" y="48" width="30" height="30" />
+          <rect x="580" y="76" width="68" height="24" />
+        </g>
+        <text x="622" y="126" text-anchor="middle" class="compose-label">Integration (untested)</text>
+
+        <line x1="680" y1="54" x2="726" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="703" y="45" text-anchor="middle" class="compose-label">integration</text>
+        <text x="703" y="66" text-anchor="middle" class="compose-label">test</text>
+
+        <g class="tested-box">
+          <rect x="730" y="0" width="116" height="112" rx="6" />
+        </g>
+        <text x="788" y="60" text-anchor="middle" class="node-title small">&#10003;</text>
+        <text x="788" y="126" text-anchor="middle" class="compose-label">Integrated, tested</text>
+
+        <line x1="846" y1="54" x2="892" y2="54" class="flow-line" marker-end="url(#arrow3)" />
+        <text x="869" y="45" text-anchor="middle" class="compose-label">e2e</text>
+        <text x="869" y="66" text-anchor="middle" class="compose-label">test</text>
+
+        <g class="tested-box final">
+          <rect x="896" y="0" width="150" height="112" rx="8" />
+          <text x="971" y="52" text-anchor="middle" class="node-title small">&#10003;</text>
+          <text x="971" y="70" text-anchor="middle" class="node-title small">E2E Verified</text>
+        </g>
+      </svg>
+      <figcaption>
+        Dashed = untested; solid/filled = tested. Every solid square inside a box is a piece that already
+        passed its own test — the box around them is only as trustworthy as its own test makes it, whatever
+        already passed inside it.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="summary">
+  <div class="wrap summary">
+    <h2>Summary</h2>
+    <p>
+      AI-Augmented Quality Architect with 20+ years spanning nearly every stage of the software lifecycle:
+      ISTQB-certified tester and test leader (J2EE project, Sony Ericsson), on-site system integrator tester
+      for a BPM platform later awarded silver at the BPM Global Awards, Solution Architect (SaaS evaluation
+      for IKEA IT's Enterprise Architecture Board; TOGAF/Zachman/Kruchten 4+1-based architecture templates at
+      Telenor), Application Lead for a 15-system EAI integration layer (Hi3G/Tre), 20+ years hands-on
+      developer (Java/JEE, .NET, React/Angular/Vue, fullstack), release and configuration-management owner
+      (CA Lisa/Nolio, Jenkins, SonarQube, Artifactory), and DevOps Coach &amp; Scrum Master (Nordea, IKANO Bank).
+    </p>
+    <p>
+      Working with AI pair-programming tools (Claude Code) now lets one person hold what used to require a
+      full team: requirements framing, architectural decisions, and quality ownership across every test
+      level — unit, component, integration, system function test (SFT), and end-to-end — inside a single,
+      fast feedback loop, without losing rigor at any stage.
+    </p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      <li><span class="when">2026</span><span class="what"><b>Field Officer</b><span>Skogsstyrelsen — nature conservation &amp; forest management, coordinated a multilingual work team.</span></span></li>
+      <li><span class="when">2021–2022</span><span class="what"><b>Fullstack Developer</b><span>ADBSafegate AB, Malmö — Angular, TypeScript, Azure, SAFe.</span></span></li>
+      <li><span class="when">2021</span><span class="what"><b>Fullstack Developer</b><span>Zaplox AB, Lund — Vue.js, Node, AWS.</span></span></li>
+      <li><span class="when">2017–2018</span><span class="what"><b>Senior Software Engineer</b><span>Verisure Innovation, Malmö — Java8, Android, Docker/Kubernetes; led GDPR compliance implementation.</span></span></li>
+      <li><span class="when">2012–2017</span><span class="what"><b>Managing Consultant</b><span>Bouvet Syd AB, Malmö — Java Developer, Team Lead / CU Manager, Partner-Responsible DevOps.</span></span></li>
+      <li><span class="when">2011</span><span class="what"><b>Solution Architect</b><span>IKEA IT, Helsingborg — SaaS feasibility evaluation for the Enterprise Architecture Board.</span></span></li>
+      <li><span class="when">2011</span><span class="what"><b>System Integration Specialist</b><span>Hi3G (Tre), Stockholm — Application Lead for a 15-system EAI integration layer (Billing, CRM).</span></span></li>
+      <li><span class="when">2008–2010</span><span class="what"><b>Java Developer &amp; Coordinator</b><span>IKEA IT, Helsingborg — bridged central IT systems with in-store operations.</span></span></li>
+      <li><span class="when">2004–2012</span><span class="what"><b>Consultant — Integration &amp; Test</b><span>Cybercom (client: Telenor), Malmö/Oslo — Java EE, Tibco, integration testing, Software Architectural Description templates (TOGAF/Zachman/Kruchten 4+1).</span></span></li>
+      <li><span class="when">2003–2004</span><span class="what"><b>Research Engineer / Thésard</b><span>École des Mines de Nantes, France — MSc thesis on OS kernel evolution using temporal logic and AOP.</span></span></li>
+      <li><span class="when">2002</span><span class="what"><b>Embedded Developer</b><span>HemoCue, Ängelholm.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <h2>Tools &amp; Technologies</h2>
+    <div class="tools-grid">
+      <div class="col">
+        <h4>Languages</h4>
+        <ul><li>Java/JEE/Spring/Android</li><li>.NET Core / C#</li><li>JavaScript, React, Angular, Vue</li><li>Python</li><li>SQL / PL-SQL</li></ul>
+      </div>
+      <div class="col">
+        <h4>Version Control &amp; CI/CD</h4>
+        <ul><li>Git/Gerrit, GitHub, GitLab</li><li>Jenkins</li><li>SonarQube, Artifactory</li><li>Docker, Kubernetes</li><li>Azure, AWS</li></ul>
+      </div>
+      <div class="col">
+        <h4>Methods</h4>
+        <ul><li>Scrum, Kanban</li><li>DevOps</li><li>ITIL</li><li>Continuous Delivery</li></ul>
+      </div>
+      <div class="col">
+        <h4>Integration</h4>
+        <ul><li>TIBCO, Mule ESB</li><li>JMS / RabbitMQ</li><li>REST, SOAP, JSON/XML</li><li>Postman / SoapUI</li></ul>
+      </div>
+    </div>
+    <p class="tools-note">This list spans a 20+ year career — some entries (e.g. legacy CI tooling) reflect earlier assignments rather than current daily tools.</p>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="wrap">
+    <h2>Certifications &amp; Education</h2>
+    <div class="certs">
+      <div class="cert"><b>ISTQB Certified Tester, Foundation Level</b><span>2006</span></div>
+      <div class="cert"><b>Certified ScrumMaster (CSM)</b><span>Softhouse Consulting Öresund AB, 2014</span></div>
+      <div class="cert"><b>ICC Certified Coach</b><span>SLH – Center of Excellence, Thailand, 2009</span></div>
+      <div class="cert"><b>Microsoft Certified: Azure Fundamentals (AZ-900)</b><span>2025</span></div>
+      <div class="cert"><b>MSc, Computer Science and Engineering (300 ECTS)</b><span>Linköping Institute of Technology, 1996–2003</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Rickard Åberg — Malmö, Sweden</p>
+    <p>
+      <a href="https://www.linkedin.com/in/rickard-%C3%A5berg-9866891/" target="_blank" rel="noopener">linkedin.com/in/rickard-åberg</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:raberg@duck.com">raberg@duck.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  var ROLE_DATA = {
+    productowner: {
+      tag: "Product Owner", title: "Product Owner",
+      html: "<p><b>Responsibility:</b> decide what's worth building and turn it into concrete requirements.</p>" +
+            "<p><b>Process:</b> weighs feasibility and cost first, then defines scope and acceptance criteria before any code is written.</p>" +
+            "<p class=\"grounded\">Grounded in: Solution Architect, IKEA IT (SaaS feasibility evaluation for the Enterprise Architecture Board); Managing Consultant &amp; Partner-Responsible, Bouvet Syd; GDPR Coordinator, Verisure; Senior Project Manager, Nordea.</p>"
+    },
+    architect: {
+      tag: "Architect", title: "Architect",
+      html: "<p><b>Responsibility:</b> the structural decisions an AI assistant shouldn't make alone.</p>" +
+            "<p><b>Process:</b> defines target architecture and interfaces before implementation starts, then reviews that the result actually fits.</p>" +
+            "<p class=\"grounded\">Grounded in: Software Architectural Description template (TOGAF, Zachman, Kruchten 4+1) authored at Telenor; Application Lead for a 15-system EAI integration layer (Hi3G/Tre).</p>"
+    },
+    codex: {
+      tag: "Parallel Agent", title: "Codex — writes code",
+      html: "<p>Generates the code implementation for a task, in parallel with Gemini writing the tests, inside the architecture the Architect step defined.</p>" +
+            "<p>One of several models that can take this slot at different capability levels: Codex, Gemini, Mistral, Meta Llama, or an open model like Alibaba Qwen.</p>"
+    },
+    gemini: {
+      tag: "Parallel Agent", title: "Gemini — writes tests",
+      html: "<p>Generates unit and component tests for the same task, independently and in parallel with the code itself — so the two are never written by the same hand.</p>"
+    },
+    verify: {
+      tag: "Verification", title: "Verify — Claude + You",
+      html: "<p><b>Responsibility:</b> the heaviest checkpoint in the loop — checking that what the parallel agents produced is actually correct and fits together, not just that it runs.</p>" +
+            "<p><b>Process:</b> Claude and Rickard jointly review the code and the tests, send work back for another pass (the rework loop) when it isn't good enough, and only pass on what both agree is solid.</p>" +
+            "<p class=\"grounded\">Grounded in: 20+ years reviewing code and test coverage as a senior developer and ISTQB-certified tester — the same scrutiny now applied jointly with Claude to AI-generated work.</p>"
+    },
+    moduleplanning: {
+      tag: "Planning", title: "Claude — Break Into Modules",
+      html: "<p>Once the Architect has set the structure, Claude splits the change into tickets — one per module — sized for an agent to handle independently.</p>"
+    },
+    moduleagents: {
+      tag: "Parallel Agents", title: "Module Agents (one per ticket)",
+      html: "<p>Each module goes to its own coding agent, in parallel — the same roster as the main flow (Codex, Gemini, Mistral, and others), just one instance per module instead of one per whole change.</p>"
+    },
+    unittestagent: {
+      tag: "Test Agent", title: "Unit-Test Agent",
+      html: "<p>Writes and runs unit tests against each finished module, independently of whichever agent wrote it. Bugs it finds go straight back to that module's own agent to fix, before anything moves on.</p>" +
+            "<p><b>Code coverage:</b> tracked per module and enforced as a gate, not just \"tests pass\". AI-generated code doesn't get a pass on coverage just because it was fast to produce — if anything, coverage matters more now, since nobody read every line by hand.</p>"
+    },
+    devopseng: {
+      tag: "Deploy Agent", title: "DevOps Engineer",
+      html: "<p>Runs the CI/CD pipeline — builds the verified change, provisions cloud environments when needed, and deploys it. Another agent execution step: supervised by Release &amp; Ops, not operated by hand.</p>"
+    },
+    releaseops: {
+      tag: "Release & Ops", title: "Release &amp; Ops",
+      html: "<p><b>Responsibility:</b> safe releases, and owning what happens once a change is actually live.</p>" +
+            "<p><b>Process:</b> oversees what the DevOps Engineer agent deployed, monitors production impact, and feeds it back into the next Product Owner decision.</p>" +
+            "<p class=\"grounded\">Grounded in: DevOps Lead &amp; Release Manager, IKANO Bank; GDPR Coordinator &amp; app owner, Verisure; DevOps Coach &amp; Scrum Master, Nordea; Problem Manager (ITIL), Länsstyrelsen.</p>"
+    }
+  };
+
+  var HUMAN_POSITIONS = {
+    productowner: { x: 130, y: 86 },
+    architect: { x: 380, y: 86 },
+    verify: { x: 930, y: 80 },
+    releaseops: { x: 1410, y: 86 }
+  };
+
+  var PERSONA_POSITIONS = {
+    productowner: { x: 291, y: 39 },
+    architect: { x: 461, y: 209 },
+    verify: { x: 296, y: 374 },
+    releaseops: { x: 121, y: 209 }
+  };
+
+  function selectNode(key) {
+    var data = ROLE_DATA[key];
+    if (!data) return;
+    document.querySelectorAll(".node-box").forEach(function (n) { n.classList.remove("active"); });
+    document.querySelectorAll('.node-box[data-key="' + key + '"]').forEach(function (n) { n.classList.add("active"); });
+    document.getElementById("detail-panel").innerHTML =
+      '<span class="tag">' + data.tag + '</span><h3>' + data.title + '</h3>' + data.html;
+    var pos = HUMAN_POSITIONS[key];
+    if (pos) {
+      document.getElementById("actor-token").setAttribute("transform", "translate(" + pos.x + "," + pos.y + ")");
+    }
+    var personaPos = PERSONA_POSITIONS[key];
+    if (personaPos) {
+      document.getElementById("actor-token-persona").setAttribute("transform", "translate(" + personaPos.x + "," + personaPos.y + ")");
+    }
+  }
+
+  document.querySelectorAll(".node-box").forEach(function (node) {
+    node.addEventListener("click", function () { selectNode(node.dataset.key); });
+    node.addEventListener("mouseenter", function () { selectNode(node.dataset.key); });
+    node.addEventListener("focus", function () { selectNode(node.dataset.key); });
+    node.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectNode(node.dataset.key); }
+    });
+  });
+
+  selectNode("productowner");
+</script>
+</body>
+</html>
