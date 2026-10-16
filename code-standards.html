@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Standards — Rickard Åberg</title>
+<meta name="description" content="Python engineering standards for requirements, code, structure, testing and architecture review.">
+<style>
+  :root { --bg:#f6f5f2; --panel:#fff; --fg:#1c1b19; --muted:#6b6862; --border:#d8d4cb; --accent:#1f6f78; --accent-soft:#e4f0ef; --code:#f0efeb; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
+  a { color:var(--accent); }
+  .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
+  header { border-bottom:1px solid var(--border); }
+  header .wrap { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:14px 20px; }
+  header strong { font-size:1.05rem; }
+  nav { display:flex; gap:16px; flex-wrap:wrap; font-size:.9rem; }
+  nav a { color:var(--muted); text-decoration:none; }
+  main { padding:48px 0 64px; }
+  h1,h2,h3,h4 { line-height:1.25; }
+  h1 { font-size:clamp(2rem,5vw,3rem); margin:0 0 12px; letter-spacing:-.03em; }
+  h2 { font-size:1.65rem; margin:32px 0 14px; }
+  h3 { font-size:1.25rem; margin:28px 0 12px; }
+  h4 { font-size:1.05rem; margin:22px 0 8px; }
+  .intro { color:var(--muted); max-width:72ch; }
+  .toc { background:var(--accent-soft); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin:28px 0 36px; }
+  .toc strong { display:block; margin-bottom:8px; }
+  .toc ul { margin:0; padding-left:22px; columns:2; }
+  .doc { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:26px clamp(20px,4vw,38px); margin:22px 0; overflow-wrap:anywhere; }
+  .doc h1 { font-size:1.9rem; }
+  .doc h2 { border-top:1px solid var(--border); padding-top:22px; }
+  .doc p { max-width:78ch; }
+  .doc li { margin:5px 0; }
+  .doc table { border-collapse:collapse; display:block; max-width:100%; overflow-x:auto; margin:16px 0; }
+  .doc th,.doc td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+  .doc th { background:var(--code); }
+  code { background:var(--code); border-radius:4px; padding:2px 5px; font-size:.92em; }
+  pre { background:var(--code); border:1px solid var(--border); border-radius:8px; padding:14px 16px; overflow:auto; }
+  pre code { background:transparent; padding:0; }
+  .status { color:var(--muted); }
+  .error { color:#8a2f2f; background:#fff1f0; border:1px solid #e4b8b3; border-radius:8px; padding:12px 14px; }
+  footer { border-top:1px solid var(--border); padding:28px 0 48px; color:var(--muted); font-size:.9rem; }
+  @media (max-width:620px) { header .wrap { align-items:flex-start; flex-direction:column; } .toc ul { columns:1; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <strong>Rickard Åberg</strong>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">CV</a>
+      <a href="code-standards.html" aria-current="page">Code standards</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Python Engineering Standard</h1>
+  <p class="intro">A practical, tool-supported standard for Python 3 projects. The documents below are loaded directly from the repository's Markdown files, which remain the source of truth.</p>
+  <div class="toc">
+    <strong>Documents</strong>
+    <ul>
+      <li><a href="#requirements-standard">Requirements standard</a></li>
+      <li><a href="#code-standard">Code standard</a></li>
+      <li><a href="#folder-structure">Folder structure</a></li>
+      <li><a href="#test-strategy">Test strategy</a></li>
+      <li><a href="#architecture-review">Architecture review</a></li>
+    </ul>
+  </div>
+  <p id="status" class="status" role="status">Loading the Markdown documents…</p>
+  <div id="documents"></div>
+  <noscript>
+    <p class="error">JavaScript is required to render the Markdown documents here. You can read the source files directly: <a href="README.md">README</a>, <a href="requirements-standard.md">requirements</a>, <a href="code-standard.md">code</a>, <a href="folder-structure.md">folder structure</a>, <a href="test-strategy.md">test strategy</a> and <a href="architecture-review.md">architecture review</a>.</p>
+  </noscript>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html">Back to the CV</a> · <a href="https://github.com/kizouker/public-cv" target="_blank" rel="noopener">View the repository</a>
+  </div>
+</footer>
+
+<script>
+  const documents = [
+    ["requirements-standard", "requirements-standard.md"],
+    ["code-standard", "code-standard.md"],
+    ["folder-structure", "folder-structure.md"],
+    ["test-strategy", "test-strategy.md"],
+    ["architecture-review", "architecture-review.md"]
+  ];
+
+  const escapeHtml = (value) => value.replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[character]);
+
+  const inlineMarkdown = (value) => escapeHtml(value)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+  const slug = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+  function renderMarkdown(markdown) {
+    const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+    const output = [];
+    let index = 0;
+    while (index < lines.length) {
+      const line = lines[index];
+      if (!line.trim()) { index += 1; continue; }
+      if (line.startsWith("```")) {
+        const language = line.slice(3).trim();
+        const code = [];
+        index += 1;
+        while (index < lines.length && !lines[index].startsWith("```")) code.push(lines[index++]);
+        index += 1;
+        output.push(`<pre><code class="language-${escapeHtml(language)}">${escapeHtml(code.join("\n"))}</code></pre>`);
+        continue;
+      }
+      if (/^\|.*\|$/.test(line) && index + 1 < lines.length && /^\|?\s*:?-{3,}/.test(lines[index + 1])) {
+        const rows = [];
+        const cells = (row) => row.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((cell) => cell.trim());
+        rows.push(cells(line)); index += 2;
+        while (index < lines.length && /^\|.*\|$/.test(lines[index])) rows.push(cells(lines[index++]));
+        output.push(`<table><thead><tr>${rows[0].map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${rows.slice(1).map((row) => `<tr>${row.map((cell) => `<td>${inlineMarkdown(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`);
+        continue;
+      }
+      const heading = line.match(/^(#{1,4})\s+(.+)$/);
+      if (heading) {
+        const level = heading[1].length;
+        const text = heading[2];
+        output.push(`<h${level} id="${slug(text)}">${inlineMarkdown(text)}</h${level}>`);
+        index += 1;
+        continue;
+      }
+      if (/^[-*]\s+/.test(line) || /^\d+\.\s+/.test(line)) {
+        const ordered = /^\d+\.\s+/.test(line);
+        const items = [];
+        while (index < lines.length && (ordered ? /^\d+\.\s+/.test(lines[index]) : /^[-*]\s+/.test(lines[index]))) {
+          items.push(lines[index++].replace(ordered ? /^\d+\.\s+/ : /^[-*]\s+/, ""));
+        }
+        output.push(`<${ordered ? "ol" : "ul"}>${items.map((item) => `<li>${inlineMarkdown(item)}</li>`).join("")}</${ordered ? "ol" : "ul"}>`);
+        continue;
+      }
+      const paragraph = [line];
+      index += 1;
+      while (index < lines.length && lines[index].trim() && !/^#{1,4}\s+/.test(lines[index]) && !/^```/.test(lines[index]) && !/^[-*]\s+/.test(lines[index]) && !/^\d+\.\s+/.test(lines[index]) && !/^\|.*\|$/.test(lines[index])) paragraph.push(lines[index++]);
+      output.push(`<p>${inlineMarkdown(paragraph.join(" "))}</p>`);
+    }
+    return output.join("\n");
+  }
+
+  async function loadDocuments() {
+    const container = document.querySelector("#documents");
+    const status = document.querySelector("#status");
+    const results = await Promise.all(documents.map(async ([id, path]) => {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`${path}: ${response.status}`);
+      return [id, await response.text()];
+    }));
+    container.innerHTML = results.map(([id, markdown]) => `<article class="doc" id="${id}">${renderMarkdown(markdown)}</article>`).join("");
+    status.textContent = "All standards loaded from Markdown source files.";
+  }
+
+  loadDocuments().catch((error) => {
+    document.querySelector("#status").remove();
+    document.querySelector("#documents").innerHTML = `<p class="error">The documents could not be loaded. Read the <a href="README.md">Markdown source files</a> directly. (${escapeHtml(error.message)})</p>`;
+  });
+</script>
+</body>
+</html>
