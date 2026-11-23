@@ -1,8 +1,7 @@
 (function () {
   const root = document.documentElement;
   const saved = localStorage.getItem("cv-theme");
-  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initial = saved || (prefersDark ? "dark" : "light");
+  const initial = saved || "dark";
   root.setAttribute("data-theme", initial);
 
   function syncButton(btn) {
