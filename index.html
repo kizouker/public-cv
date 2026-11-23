@@ -18,12 +18,11 @@
       <a href="#experience">Experience</a>
       <a href="assignments.html">Assignments</a>
       <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
       <a href="ai-engineering.html">AI engineering</a>
       <a href="code-standards.html">Code standards</a>
       <a href="index.html" aria-current="page">EN</a>
       <a href="sv.html" lang="sv" title="Svensk version">SV</a>
-      <button id="theme-toggle" class="theme-toggle" type="button">☀ Light</button>
+      <button id="theme-toggle" class="theme-toggle" type="button">☾ Dark</button>
     </nav>
   </div>
 </header>
@@ -51,56 +50,69 @@
   </section>
 
   <section id="profile">
-    <div class="wrap">
-      <h2>Profile</h2>
-      <p class="lead">Rickard Åberg is a software engineer and solution architect with more than 20 years of experience across the software lifecycle. His background combines hands-on development with system integration, architecture, testing, release management and DevOps.</p>
-      <p class="lead">He has worked in consulting and product environments, moving between implementation, technical leadership, coordination and process improvement. Current focus areas include cloud platforms, secure delivery, modern web development and disciplined, test-verified AI engineering.</p>
-      <div class="cards">
-        <article class="card"><span class="eyebrow">01 · Build</span><h3>Engineering</h3><p>Java/JEE, Spring Boot, .NET, TypeScript, React, Angular, Vue, Python, Rust and SQL.</p></article>
-        <article class="card amber"><span class="eyebrow">02 · Connect</span><h3>Integration &amp; MCP</h3><p>Enterprise integration, APIs, messaging, distributed systems, Model Context Protocol servers and technical coordination.</p></article>
-        <article class="card indigo"><span class="eyebrow">03 · Improve</span><h3>Quality &amp; AI Flows</h3><p>Spec-driven TDD, CI/CD, release management, DevOps, architecture reviews and verifiable multi-agent workflows.</p></article>
+    <div class="wrap split">
+      <div class="split-rail">
+        <span class="section-num">01 / Profile</span>
+        <h2>Overview</h2>
+        <p>20+ years across consulting, product engineering and architecture.</p>
+      </div>
+      <div>
+        <p class="lead">Rickard Åberg is a software engineer and solution architect with more than 20 years of experience across the software lifecycle. His background combines hands-on development with system integration, architecture, testing, release management and DevOps.</p>
+        <p class="lead">He has worked in consulting and product environments, moving between implementation, technical leadership, coordination and process improvement. Current focus areas include cloud platforms, secure delivery, modern web development and disciplined, test-verified AI engineering.</p>
+        <div class="cards">
+          <article class="card"><span class="eyebrow">Build</span><h3>Engineering</h3><p>Java/JEE, Spring Boot, .NET, TypeScript, React, Angular, Vue, Python, Rust and SQL.</p></article>
+          <article class="card"><span class="eyebrow">Connect</span><h3>Integration &amp; MCP</h3><p>Enterprise integration, APIs, messaging, distributed systems, Model Context Protocol servers and technical coordination.</p></article>
+          <article class="card"><span class="eyebrow">Improve</span><h3>Quality &amp; AI Flows</h3><p>Spec-driven TDD, CI/CD, release management, DevOps, architecture reviews and verifiable multi-agent workflows.</p></article>
+        </div>
       </div>
     </div>
   </section>
 
   <section id="projects">
-    <div class="wrap">
-      <h2>Recent Projects (2026)</h2>
-      <p class="lead">Open-source work from the last months, all public on <a href="https://github.com/kizouker" target="_blank" rel="noopener">GitHub</a>. Built with spec-driven AI engineering, automated tests and CI from day one.</p>
-      <div class="cards two">
-        <article class="card">
-          <span class="eyebrow">Meta Global AI Hackathon 2026 · Voice AI</span>
-          <h3><a href="https://github.com/kizouker/adaptive-IVR-agent" target="_blank" rel="noopener">Holdmate — adaptive IVR agent</a></h3>
-          <p>A voice agent that learns to navigate Swedish government phone menus and waits in the queue for you, handing over cleanly before BankID. Includes a 43-line finite-state practice robot with BFS exploration, live React board, iOS/watchOS queue ticket and <a href="https://youtu.be/orxqS8rnxt0" target="_blank" rel="noopener">3-min demo video</a>.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">whisper.cpp</span><span class="tag">Meta Muse Spark</span><span class="tag">React</span><span class="tag">Swift</span><span class="tag">Gherkin + pytest</span><span class="tag">Docker</span></div>
-        </article>
-        <article class="card emerald">
-          <span class="eyebrow">PyPI Package · Open-Source MCP</span>
-          <h3><a href="https://github.com/kizouker/swedish-jobs-mcp" target="_blank" rel="noopener">swedish-jobs-mcp</a></h3>
-          <p>MCP server published on <a href="https://pypi.org/project/swedish-jobs-mcp/" target="_blank" rel="noopener">PyPI</a> that lets AI assistants (Claude, Codex, Cursor) search Swedish job ads via Arbetsförmedlingen's open JobTech APIs. Local stdio transport, context-safe paging and CI across Python 3.10–3.13.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">uv / uvx</span><span class="tag">PyPI</span><span class="tag">pytest</span><span class="tag">GitHub Actions</span></div>
-        </article>
-        <article class="card amber">
-          <span class="eyebrow">Backend · Cloud &amp; HealthKit</span>
-          <h3><a href="https://github.com/kizouker/hrv-service" target="_blank" rel="noopener">hrv-service</a></h3>
-          <p>REST API for heart-rate-variability readings synced from iPhone and Apple Watch (HealthKit). Features JWT auth, Swagger/OpenAPI, JaCoCo 70% coverage gate, Azure Bicep infrastructure and a Kotlin Mordant operations TUI.</p>
-          <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3.4</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Docker</span><span class="tag">Azure Bicep</span><span class="tag">Kotlin</span></div>
-        </article>
-        <article class="card indigo">
-          <span class="eyebrow">Kiroween 2026 · Creative Co-Pilot</span>
-          <h3><a href="https://github.com/kizouker/paula-lib" target="_blank" rel="noopener">paula-lib</a></h3>
-          <p>Agent-assisted ProTracker 2-style music tracker: describe a beat or bassline in plain language and an AI agent writes editable patterns back into the grid. Includes 8-bit resampling/dither DSP and <a href="https://kizouker.github.io/paula-lib/" target="_blank" rel="noopener">project website</a>.</p>
-          <div class="tags"><span class="tag">C</span><span class="tag">Rust</span><span class="tag">MCP</span><span class="tag">WebAssembly</span><span class="tag">Audio DSP</span></div>
-        </article>
+    <div class="wrap split">
+      <div class="split-rail">
+        <span class="section-num">02 / Projects</span>
+        <h2>Recent Work (2026)</h2>
+        <p>Public open-source repositories built with spec-driven AI engineering, automated tests and CI. <a href="ai-engineering.html">Read the 3-month AI log →</a></p>
       </div>
-      <p class="lead" style="margin-top:20px">Want the engineering story behind these builds? Read <a href="ai-engineering.html">AI Engineering — Last 3 Months</a> (custom skills, lessons learned, design Q&amp;A and harnesses) or the <a href="code-standards.html">Python Engineering Standard</a>.</p>
+      <div>
+        <div class="cards two">
+          <article class="card featured">
+            <span class="eyebrow">Featured · Meta Global AI Hackathon 2026 · Voice AI</span>
+            <h3><a href="https://github.com/kizouker/adaptive-IVR-agent" target="_blank" rel="noopener">Holdmate — adaptive IVR agent</a></h3>
+            <p>A voice agent that learns to navigate Swedish government phone menus and waits in the queue for you, handing over cleanly before BankID. Includes a 43-line finite-state practice robot with BFS exploration, live React board, iOS/watchOS queue ticket and <a href="https://youtu.be/orxqS8rnxt0" target="_blank" rel="noopener">3-min demo video</a>.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">whisper.cpp</span><span class="tag">Meta Muse Spark</span><span class="tag">React</span><span class="tag">Swift</span><span class="tag">Gherkin + pytest</span><span class="tag">Docker</span></div>
+          </article>
+          <article class="card">
+            <span class="eyebrow">PyPI Package · Open-Source MCP</span>
+            <h3><a href="https://github.com/kizouker/swedish-jobs-mcp" target="_blank" rel="noopener">swedish-jobs-mcp</a></h3>
+            <p>MCP server published on <a href="https://pypi.org/project/swedish-jobs-mcp/" target="_blank" rel="noopener">PyPI</a> that lets AI assistants (Claude, Codex, Cursor) search Swedish job ads via Arbetsförmedlingen's open JobTech APIs. Local stdio transport, context-safe paging and CI across Python 3.10–3.13.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">uv / uvx</span><span class="tag">PyPI</span><span class="tag">pytest</span></div>
+          </article>
+          <article class="card">
+            <span class="eyebrow">Backend · Cloud &amp; HealthKit</span>
+            <h3><a href="https://github.com/kizouker/hrv-service" target="_blank" rel="noopener">hrv-service</a></h3>
+            <p>REST API for heart-rate-variability readings synced from iPhone and Apple Watch (HealthKit). JWT auth, Swagger/OpenAPI, JaCoCo 70% coverage gate, Azure Bicep infrastructure and a Kotlin Mordant operations TUI.</p>
+            <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3.4</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Azure Bicep</span><span class="tag">Kotlin</span></div>
+          </article>
+          <article class="card featured">
+            <span class="eyebrow">Kiroween 2026 · Creative Co-Pilot</span>
+            <h3><a href="https://github.com/kizouker/paula-lib" target="_blank" rel="noopener">paula-lib</a></h3>
+            <p>Agent-assisted ProTracker 2-style music tracker: describe a beat or bassline in plain language and an AI agent writes editable patterns back into the grid. C replayer wrapped in Rust, MCP server, WebAssembly build, 8-bit resampling/dither DSP and <a href="https://kizouker.github.io/paula-lib/" target="_blank" rel="noopener">project website</a>.</p>
+            <div class="tags"><span class="tag">C</span><span class="tag">Rust</span><span class="tag">MCP</span><span class="tag">WebAssembly</span><span class="tag">Audio DSP</span></div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="experience">
-    <div class="wrap">
-      <h2>Experience</h2>
-      <p class="lead">Career overview below — see <a href="assignments.html">Selected Assignments</a> for detailed client engagements, deliverables and testimonials.</p>
+    <div class="wrap split">
+      <div class="split-rail">
+        <span class="section-num">03 / Experience</span>
+        <h2>Career Timeline</h2>
+        <p>Want detailed client engagements, deliverables and testimonials? <a href="assignments.html">Selected Assignments →</a></p>
+      </div>
       <ul class="timeline">
         <li><span class="when">2026</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Field Officer</strong><span>Skogsstyrelsen — nature conservation and forest management; coordinated a multilingual work team.</span></span></li>
         <li><span class="when">2021–2022</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Fullstack Developer</strong><span>ADBSafegate AB, Malmö — Angular, TypeScript, Azure and SAFe.</span></span></li>
@@ -117,27 +129,35 @@
   </section>
 
   <section id="skills">
-    <div class="wrap">
-      <h2>Skills &amp; Technologies</h2>
-      <div class="columns">
-        <div class="col-box"><h3>Development</h3><ul><li>Java / JEE / Spring / Android</li><li>.NET Core / C#</li><li>JavaScript, React, Angular, Vue</li><li>Python and SQL</li><li>Rust, C and Kotlin</li></ul></div>
-        <div class="col-box"><h3>AI &amp; Agents</h3><ul><li>Model Context Protocol (MCP) servers</li><li>Multi-agent LLM workflows</li><li>Ollama local inference &amp; cloud APIs</li><li>Speech recognition (whisper.cpp)</li></ul></div>
-        <div class="col-box"><h3>Delivery</h3><ul><li>Git, Gerrit, GitHub and GitLab</li><li>Jenkins, SonarQube and Artifactory</li><li>Docker and Kubernetes</li><li>Azure and AWS</li></ul></div>
-        <div class="col-box"><h3>Integration</h3><ul><li>TIBCO and Mule ESB</li><li>JMS and RabbitMQ</li><li>REST, SOAP and JSON/XML</li><li>Postman and SoapUI</li></ul></div>
-        <div class="col-box"><h3>Ways of Working</h3><ul><li>Scrum and Kanban</li><li>DevOps and continuous delivery</li><li>ITIL and problem management</li><li>Testing and quality assurance</li></ul></div>
+    <div class="wrap split">
+      <div class="split-rail">
+        <span class="section-num">04 / Skills</span>
+        <h2>Tech Stack</h2>
+        <p>Languages, AI harnesses, cloud delivery and integration tooling.</p>
+      </div>
+      <div class="skill-rows">
+        <div class="skill-row"><h3>Development</h3><div class="tags"><span class="tag">Java 21 / JEE / Spring Boot</span><span class="tag">Python</span><span class="tag">TypeScript</span><span class="tag">React / Angular / Vue</span><span class="tag">.NET Core / C#</span><span class="tag">Rust &amp; C</span><span class="tag">Kotlin</span><span class="tag">SQL</span></div></div>
+        <div class="skill-row"><h3>AI &amp; Agents</h3><div class="tags"><span class="tag">MCP Servers</span><span class="tag">Multi-Agent Workflows</span><span class="tag">Claude Code</span><span class="tag">Antigravity</span><span class="tag">Codex CLI</span><span class="tag">Kiro CLI</span><span class="tag">Ollama (Gemma / Qwen)</span><span class="tag">whisper.cpp</span></div></div>
+        <div class="skill-row"><h3>Cloud &amp; Delivery</h3><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Azure &amp; Bicep</span><span class="tag">AWS</span><span class="tag">GitHub Actions</span><span class="tag">Git / GitLab / Gerrit</span><span class="tag">Jenkins &amp; SonarQube</span></div></div>
+        <div class="skill-row"><h3>Integration</h3><div class="tags"><span class="tag">TIBCO</span><span class="tag">Mule ESB</span><span class="tag">JMS &amp; RabbitMQ</span><span class="tag">REST / OpenAPI</span><span class="tag">SOAP / JSON / XML</span></div></div>
+        <div class="skill-row"><h3>Ways of Working</h3><div class="tags"><span class="tag">Spec-Driven TDD</span><span class="tag">OpenSpec &amp; Gherkin</span><span class="tag">arc42 / C4</span><span class="tag">Scrum &amp; Kanban</span><span class="tag">DevOps &amp; ITIL</span></div></div>
       </div>
     </div>
   </section>
 
   <section id="education">
-    <div class="wrap">
-      <h2>Education &amp; Certifications</h2>
+    <div class="wrap split">
+      <div class="split-rail">
+        <span class="section-num">05 / Credentials</span>
+        <h2>Education &amp; Certifications</h2>
+        <p>Academic foundation and verified industry certifications.</p>
+      </div>
       <div class="certs">
         <div class="cert"><strong>MSc, Computer Science and Engineering</strong><span>Linköping Institute of Technology, 1996–2003</span></div>
-        <div class="cert"><strong>ISTQB Certified Tester</strong><span>Foundation Level, 2006</span></div>
-        <div class="cert"><strong>Certified ScrumMaster</strong><span>Softhouse Consulting Öresund AB, 2014</span></div>
         <div class="cert"><strong>Microsoft Azure Fundamentals</strong><span>AZ-900, 2025</span></div>
         <div class="cert"><strong>Google Cybersecurity Fundamentals</strong><span>Google/Coursera, 2023–2024</span></div>
+        <div class="cert"><strong>Certified ScrumMaster</strong><span>Softhouse Consulting Öresund AB, 2014</span></div>
+        <div class="cert"><strong>ISTQB Certified Tester</strong><span>Foundation Level, 2006</span></div>
       </div>
     </div>
   </section>
