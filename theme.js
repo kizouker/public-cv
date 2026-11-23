@@ -1,12 +1,34 @@
 (function () {
   const root = document.documentElement;
-  const defaults = { theme: "light", palette: "plum", font: "geometric", layout: "split" };
-  const state = {
-    theme: localStorage.getItem("cv-theme") || defaults.theme,
-    palette: localStorage.getItem("cv-palette") || defaults.palette,
-    font: localStorage.getItem("cv-font") || defaults.font,
-    layout: localStorage.getItem("cv-layout") || defaults.layout,
+  const cfg = Object.assign(
+    { theme: "light", palette: "plum", font: "geometric", layout: "split", showStudio: true },
+    window.SITE_THEME || {}
+  );
+
+  const VALID = {
+    theme: ["light", "dark"],
+    palette: ["plum", "mono", "blue", "cyan", "gold"],
+    font: ["geometric", "editorial", "swiss", "terminal"],
+    layout: ["split", "stacked", "wide"],
   };
+
+  const params = new URLSearchParams(window.location.search);
+  const pick = (key) => {
+    const fromUrl = params.get(key);
+    if (fromUrl && VALID[key].includes(fromUrl)) return fromUrl;
+    const fromStore = localStorage.getItem("cv-" + key);
+    if (fromStore && VALID[key].includes(fromStore)) return fromStore;
+    return cfg[key];
+  };
+
+  const state = {
+    theme: pick("theme"),
+    palette: pick("palette"),
+    font: pick("font"),
+    layout: pick("layout"),
+  };
+
+  const showStudio = params.has("studio") ? params.get("studio") !== "0" : cfg.showStudio !== false;
 
   function apply() {
     root.setAttribute("data-theme", state.theme);
@@ -39,6 +61,32 @@
     ["wide", "Wide Bento"],
   ];
 
+  function shareUrl() {
+    const u = new URL(window.location.href);
+    u.searchParams.set("palette", state.palette);
+    u.searchParams.set("theme", state.theme);
+    u.searchParams.set("font", state.font);
+    u.searchParams.set("layout", state.layout);
+    u.searchParams.set("studio", "0");
+    return u.toString();
+  }
+
+  function configSnippet() {
+    return `window.SITE_THEME = {\n  theme: "${state.theme}",\n  palette: "${state.palette}",\n  font: "${state.font}",\n  layout: "${state.layout}",\n  showStudio: false,\n};`;
+  }
+
+  function copyText(text, btn, label) {
+    const done = () => {
+      btn.textContent = "Copied!";
+      setTimeout(() => { btn.textContent = label; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => window.prompt("Copy:", text));
+    } else {
+      window.prompt("Copy:", text);
+    }
+  }
+
   function syncUI() {
     const btn = document.getElementById("theme-toggle");
     if (btn) {
@@ -46,7 +94,7 @@
       btn.textContent = dark ? "☀ Light" : "☾ Dark";
       btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
     }
-    document.querySelectorAll(".studio-chip").forEach((chip) => {
+    document.querySelectorAll(".studio-chip[data-key]").forEach((chip) => {
       chip.classList.toggle("active", state[chip.dataset.key] === chip.dataset.val);
     });
     const code = document.getElementById("studio-code");
@@ -58,10 +106,11 @@
     fab.className = "studio-fab";
     fab.type = "button";
     fab.textContent = "Style Studio";
-    fab.setAttribute("aria-expanded", "true");
+    fab.setAttribute("aria-expanded", "false");
 
     const panel = document.createElement("aside");
     panel.className = "studio-panel";
+    panel.hidden = true;
     panel.setAttribute("aria-label", "Style switcher");
     panel.innerHTML = `
       <div class="studio-head">
@@ -93,21 +142,39 @@
           `<button class="studio-chip" type="button" data-key="layout" data-val="${v}">${l}</button>`
         ).join("")}</div>
       </div>
+      <div class="studio-group">
+        <span class="studio-label">Share or save as default</span>
+        <div class="studio-chips">
+          <button class="studio-chip" type="button" id="studio-copy-link">Copy share link</button>
+          <button class="studio-chip" type="button" id="studio-copy-cfg">Copy site-theme.js</button>
+          <button class="studio-chip" type="button" id="studio-reset">Reset</button>
+        </div>
+      </div>
       <div class="studio-code" id="studio-code"></div>
     `;
 
-    fab.addEventListener("click", () => {
+    const toggle = () => {
       panel.hidden = !panel.hidden;
       fab.setAttribute("aria-expanded", String(!panel.hidden));
-    });
-    panel.querySelector(".studio-close").addEventListener("click", () => {
-      panel.hidden = true;
-      fab.setAttribute("aria-expanded", "false");
-    });
+    };
+    fab.addEventListener("click", toggle);
+    panel.querySelector(".studio-close").addEventListener("click", toggle);
     panel.addEventListener("click", (e) => {
-      const chip = e.target.closest(".studio-chip");
+      const chip = e.target.closest(".studio-chip[data-key]");
       if (!chip) return;
       state[chip.dataset.key] = chip.dataset.val;
+      apply();
+      syncUI();
+    });
+    panel.querySelector("#studio-copy-link").addEventListener("click", function () {
+      copyText(shareUrl(), this, "Copy share link");
+    });
+    panel.querySelector("#studio-copy-cfg").addEventListener("click", function () {
+      copyText(configSnippet(), this, "Copy site-theme.js");
+    });
+    panel.querySelector("#studio-reset").addEventListener("click", () => {
+      Object.assign(state, { theme: cfg.theme, palette: cfg.palette, font: cfg.font, layout: cfg.layout });
+      ["theme", "palette", "font", "layout"].forEach((k) => localStorage.removeItem("cv-" + k));
       apply();
       syncUI();
     });
@@ -119,10 +186,7 @@
       navBtn.className = "theme-toggle";
       navBtn.type = "button";
       navBtn.textContent = "Themes";
-      navBtn.addEventListener("click", () => {
-        panel.hidden = !panel.hidden;
-        fab.setAttribute("aria-expanded", String(!panel.hidden));
-      });
+      navBtn.addEventListener("click", toggle);
       nav.appendChild(navBtn);
     }
   }
@@ -136,7 +200,7 @@
         syncUI();
       });
     }
-    buildStudio();
+    if (showStudio) buildStudio();
     syncUI();
   });
 })();
