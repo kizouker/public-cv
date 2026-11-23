@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Engineering — Rickard Åberg</title>
+<meta name="description" content="Three months of AI-assisted engineering: custom agent skills, projects, lessons learned, key engineering questions and AI harnesses used.">
+<style>
+  :root { --bg:#f6f5f2; --panel:#fff; --fg:#1c1b19; --muted:#6b6862; --border:#d8d4cb; --accent:#1f6f78; --accent-soft:#e4f0ef; --code:#f0efeb; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
+  a { color:var(--accent); }
+  .wrap { max-width:960px; margin:0 auto; padding:0 20px; }
+  header { border-bottom:1px solid var(--border); }
+  header .wrap { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:14px 20px; }
+  header strong { font-size:1.05rem; }
+  nav { display:flex; gap:16px; flex-wrap:wrap; font-size:.9rem; }
+  nav a { color:var(--muted); text-decoration:none; }
+  nav a[aria-current="page"] { color:var(--fg); font-weight:600; }
+  main { padding:48px 0 64px; }
+  h1,h2,h3 { line-height:1.25; }
+  h1 { font-size:clamp(2rem,5vw,3rem); margin:0 0 12px; letter-spacing:-.03em; }
+  h2 { font-size:1.55rem; margin:0 0 16px; }
+  h3 { font-size:1.02rem; margin:0 0 8px; }
+  .intro { color:var(--muted); max-width:72ch; font-size:1.05rem; margin:0 0 24px; }
+  .toc { background:var(--accent-soft); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin:0 0 36px; }
+  .toc strong { display:block; margin-bottom:6px; }
+  .toc ul { margin:0; padding-left:20px; display:flex; gap:8px 24px; flex-wrap:wrap; }
+  section { border-top:1px solid var(--border); padding:34px 0; }
+  .lead { color:var(--muted); max-width:74ch; margin:0 0 18px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; }
+  .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:18px; }
+  .card p { color:var(--muted); margin:0; font-size:.93rem; }
+  .card ul { margin:8px 0 0; padding-left:18px; color:var(--muted); font-size:.92rem; }
+  .card li { margin:4px 0; }
+  code { background:var(--code); border-radius:4px; padding:1px 5px; font-size:.88em; color:var(--fg); }
+  .qa-list { display:grid; gap:14px; }
+  .qa { background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:10px; padding:16px 20px; }
+  .qa .q { font-weight:650; margin:0 0 6px; color:var(--fg); }
+  .qa .a { margin:0; color:var(--muted); font-size:.94rem; }
+  .harnesses { display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:12px; }
+  .harness { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:14px 16px; }
+  .harness strong { display:block; font-size:.96rem; margin-bottom:4px; }
+  .harness span { color:var(--muted); font-size:.88rem; display:block; }
+  .lessons { margin:0; padding-left:20px; max-width:76ch; }
+  .lessons li { margin:10px 0; }
+  .lessons strong { color:var(--fg); }
+  footer { border-top:1px solid var(--border); padding:28px 0 48px; color:var(--muted); font-size:.9rem; }
+  @media (max-width:620px) { header .wrap { align-items:flex-start; flex-direction:column; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <strong>Rickard Åberg</strong>
+    <nav aria-label="Primary navigation">
+      <a href="index.html">CV</a>
+      <a href="ai-engineering.html" aria-current="page">AI engineering</a>
+      <a href="code-standards.html">Code standards</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>AI Engineering — Last 3 Months</h1>
+  <p class="intro">Between September and November 2026 I shifted from using AI assistants as chat tools to treating them as engineering collaborators governed by specifications, tests, isolated git workflows and reusable skills. This page summarises what I built, what I learned, the questions I had to answer and the harnesses I used.</p>
+
+  <div class="toc">
+    <strong>On this page</strong>
+    <ul>
+      <li><a href="#skills-built">Custom AI skills built</a></li>
+      <li><a href="#built-and-learned">What I built &amp; learned</a></li>
+      <li><a href="#questions">Questions asked &amp; answered</a></li>
+      <li><a href="#harnesses">Harnesses &amp; runtimes</a></li>
+    </ul>
+  </div>
+
+  <section id="skills-built">
+    <h2>Custom AI Skills Built</h2>
+    <p class="lead">Instead of repeating instructions in chat, I authored ~50 reusable <code>SKILL.md</code> workflows that work across agent harnesses. They turn recurring engineering, architecture and review tasks into repeatable procedures:</p>
+    <div class="cards">
+      <article class="card">
+        <h3>Requirements &amp; Specifications</h3>
+        <p>Turning fuzzy ideas into verifiable specs before any code is written.</p>
+        <ul>
+          <li><code>vision</code> — vision line, themes, walking skeleton and roadmap</li>
+          <li><code>spec</code> — OpenSpec structure + Gherkin scenarios</li>
+          <li><code>req-functional-kiro</code>, <code>req-functional-openspec</code>, <code>req-functional-speckit</code> — EARS, OpenSpec &amp; Spec Kit formats</li>
+          <li><code>req-non-functional</code> — ISO 25010, Planguage &amp; quality scenarios</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Architecture &amp; Planning</h3>
+        <p>Structured design documentation and risk/stakeholder clarity.</p>
+        <ul>
+          <li><code>architecture</code> — arc42 + C4 diagrams in Mermaid</li>
+          <li><code>eip-nats</code> — Enterprise Integration Patterns mapped to NATS/JetStream</li>
+          <li><code>roadmap</code> &amp; <code>risk-management</code> — milestones, dependencies and mitigations</li>
+          <li><code>stakeholder-management</code> &amp; <code>communication-plan</code></li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Autonomous &amp; Parallel Agent Flows</h3>
+        <p>Running multiple agents safely without losing reviewability.</p>
+        <ul>
+          <li><code>parallel-worktrees</code> — 3 isolated git worktrees for conflict-free parallel sessions</li>
+          <li><code>natt-korning</code> — unattended branch-only coordinator + verifier loop (never pushes or merges)</li>
+          <li><code>review-tree</code> — interactive tree navigator to audit agent changes</li>
+          <li><code>prompt-router</code> — routes rules to the right prompt, skill, standard or memory</li>
+          <li><code>files-to-tickets</code>, <code>status-graph</code>, <code>code-handoff</code></li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Repos, CI, Ops &amp; Security</h3>
+        <p>Enforcing consistent engineering hygiene across new repositories.</p>
+        <ul>
+          <li><code>repo-setup</code> &amp; <code>add-ci</code> — <code>uv</code>, GitHub Actions, <code>pytest-cov</code>, <code>ls-lint</code></li>
+          <li><code>shell-script-standard</code> — preflight checks, check-only mode and verification</li>
+          <li><code>version-control-manager</code> &amp; <code>github-wiki-publish</code></li>
+          <li><code>ctf-hydrogen</code> — reusable CTF workflow built during FOI Crate-CTF 2026</li>
+          <li><code>mac-remote-survey</code> — read-only SSH hardware &amp; disk diagnostics</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="built-and-learned">
+    <h2>What I Built &amp; Learned</h2>
+    <p class="lead">Across four public open-source repos (<a href="https://github.com/kizouker/adaptive-IVR-agent" target="_blank" rel="noopener">Holdmate</a>, <a href="https://github.com/kizouker/swedish-jobs-mcp" target="_blank" rel="noopener">swedish-jobs-mcp</a>, <a href="https://github.com/kizouker/hrv-service" target="_blank" rel="noopener">hrv-service</a>, <a href="https://github.com/kizouker/paula-lib" target="_blank" rel="noopener">paula-lib</a>), two hackathons (Meta Global AI Hackathon 2026, Kiroween 2026), FOI Crate-CTF 2026, multi-agent coordinator pipelines and a published <a href="code-standards.html">Python engineering standard</a>, six lessons stood out:</p>
+    <ul class="lessons">
+      <li><strong>Specs matter more with AI, not less.</strong> Without concrete, observable acceptance criteria (EARS, OpenSpec, Gherkin), an agent produces fast, plausible-looking drift.</li>
+      <li><strong>Separate building from verifying.</strong> Pairing a builder/coordinator agent with an independent verifier—backed by <code>RED → GREEN → REFACTOR</code>, <code>ruff</code>, <code>ty</code> and coverage gates—catches silent shortcuts. A passing test is evidence, not proof.</li>
+      <li><strong>Git isolation unlocks real parallelism.</strong> Running agents in separate git worktrees and branch-only unattended sessions lets multiple tracks move forward without merge chaos or touching <code>main</code>.</li>
+      <li><strong>Hard-code human-in-the-loop boundaries.</strong> External side effects—sending emails, submitting applications, touching live public phone lines or pushing/merging—must always stop for an explicit human yes.</li>
+      <li><strong>Treat external text as untrusted data.</strong> Building an MCP server over public job ads made prompt injection and context-window flooding concrete design concerns: cap page sizes, expose minimal surface area and keep stdio servers local.</li>
+      <li><strong>Model-agnostic standards outlive prompts.</strong> Keeping engineering rules in plain Markdown standards instead of model-specific prompts makes the same workflow portable across Claude, Gemini, OpenAI, Meta and local Ollama models.</li>
+    </ul>
+  </section>
+
+  <section id="questions">
+    <h2>Questions I Asked Myself — and My Answers</h2>
+    <div class="qa-list">
+      <article class="qa">
+        <p class="q">How do you verify systems that include non-deterministic LLM steps?</p>
+        <p class="a">Surround the model with deterministic boundaries: strict JSON/schema validation, deterministic simulators (like Holdmate's 43-line finite-state practice robot), automated pytest suites and an explicit verifier step against written acceptance criteria.</p>
+      </article>
+      <article class="qa">
+        <p class="q">Where does a new rule belong: in a prompt, a skill, a repo standard or memory?</p>
+        <p class="a">Project-wide invariants belong in versioned repo standards (like <a href="code-standards.html">Code standards</a>); repeatable multi-step workflows belong in reusable <code>SKILL.md</code> skills; one-off goals stay in the task prompt. I codified this decision tree in a <code>prompt-router</code> skill.</p>
+      </article>
+      <article class="qa">
+        <p class="q">How do you let agents work autonomously (overnight or in parallel) without losing control?</p>
+        <p class="a">Constrained blast radius: dedicated feature branches or git worktrees, zero push/merge/send permissions, a coordinator + verifier split, and a structured <code>review-tree</code> walkthrough so every branch and decision can be audited before merging.</p>
+      </article>
+      <article class="qa">
+        <p class="q">How do you train a voice agent against a public-agency phone robot without spamming the real line?</p>
+        <p class="a">Simulator-first engineering: record and transcribe real calls into a local finite-state practice robot so BFS exploration and LLM intent normalisation run safely offline. On real calls, the human always handles BankID and takes over when a person answers.</p>
+      </article>
+      <article class="qa">
+        <p class="q">How should AI assist creative and technical work without turning into a black box?</p>
+        <p class="a">“Creative co-pilot, not a jukebox” (<code>paula-lib</code>): expose structured tools over MCP so the agent writes editable tracker patterns back into the grid rather than generating opaque flat audio.</p>
+      </article>
+      <article class="qa">
+        <p class="q">How do you keep an MCP server safe and useful for different AI clients?</p>
+        <p class="a">Run locally over stdio with no open network port, enforce paging (<code>next_offset</code>, max 25 items per call) so responses never flood the context window, configure timeouts and URLs via environment variables, and treat fetched third-party text as untrusted against prompt injection.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="harnesses">
+    <h2>AI Harnesses, Agents &amp; Runtimes Used</h2>
+    <p class="lead">I deliberately work across multiple agent harnesses and model families to compare workflows, keep skills portable and avoid lock-in:</p>
+    <div class="harnesses">
+      <div class="harness"><strong>Claude Code</strong><span>Primary terminal coding harness: custom skills, subagents, git worktrees, hooks and TDD loops. Completed ExamPro's Claude Code Camp.</span></div>
+      <div class="harness"><strong>Antigravity (agy)</strong><span>Google DeepMind agentic CLI: multi-model orchestration, shared skills, MCP tooling and workflow automation.</span></div>
+      <div class="harness"><strong>OpenAI Codex CLI</strong><span>Terminal coding agent and cross-client verification target for MCP servers and Python standards.</span></div>
+      <div class="harness"><strong>Kiro CLI &amp; Kiro Crew</strong><span>Spec-driven development with EARS requirements; used to build <code>paula-lib</code> for Kiroween 2026.</span></div>
+      <div class="harness"><strong>Muse Code &amp; Meta AI</strong><span>Used during Meta Global AI Hackathon 2026 (47 tracked sessions with Muse Spark &amp; Muse Wonder; live Spark intent normalisation in Holdmate).</span></div>
+      <div class="harness"><strong>Ollama (local inference)</strong><span>Local evaluation of open-weight models (Gemma, Qwen) behind swappable model interfaces for offline and privacy-sensitive workflows.</span></div>
+      <div class="harness"><strong>Model Context Protocol (MCP)</strong><span>Both server author (<code>swedish-jobs-mcp</code> on PyPI, <code>paula-mcp</code> in Rust) and client integrator across Claude Desktop, Claude Code, Codex and Antigravity.</span></div>
+      <div class="harness"><strong>Spec &amp; Verification Tooling</strong><span>OpenSpec, GitHub Spec Kit, Kiro EARS, Gherkin/BDD, <code>ruff</code>, <code>ty</code>, <code>pytest</code> and GitHub Actions CI.</span></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html">Back to the CV</a> · <a href="code-standards.html">Code standards</a> · <a href="https://github.com/kizouker" target="_blank" rel="noopener">github.com/kizouker</a>
+  </div>
+</footer>
+</body>
+</html>
