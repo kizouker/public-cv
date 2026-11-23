@@ -5,51 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Code Standards — Rickard Åberg</title>
 <meta name="description" content="Python engineering standards for requirements, code, structure, testing and architecture review.">
-<style>
-  :root { --bg:#f6f5f2; --panel:#fff; --fg:#1c1b19; --muted:#6b6862; --border:#d8d4cb; --accent:#1f6f78; --accent-soft:#e4f0ef; --code:#f0efeb; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.6; }
-  a { color:var(--accent); }
-  .wrap { max-width:980px; margin:0 auto; padding:0 20px; }
-  header { border-bottom:1px solid var(--border); }
-  header .wrap { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:14px 20px; }
-  header strong { font-size:1.05rem; }
-  nav { display:flex; gap:16px; flex-wrap:wrap; font-size:.9rem; }
-  nav a { color:var(--muted); text-decoration:none; }
-  main { padding:48px 0 64px; }
-  h1,h2,h3,h4 { line-height:1.25; }
-  h1 { font-size:clamp(2rem,5vw,3rem); margin:0 0 12px; letter-spacing:-.03em; }
-  h2 { font-size:1.65rem; margin:32px 0 14px; }
-  h3 { font-size:1.25rem; margin:28px 0 12px; }
-  h4 { font-size:1.05rem; margin:22px 0 8px; }
-  .intro { color:var(--muted); max-width:72ch; }
-  .toc { background:var(--accent-soft); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin:28px 0 36px; }
-  .toc strong { display:block; margin-bottom:8px; }
-  .toc ul { margin:0; padding-left:22px; columns:2; }
-  .doc { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:26px clamp(20px,4vw,38px); margin:22px 0; overflow-wrap:anywhere; }
-  .doc h1 { font-size:1.9rem; }
-  .doc h2 { border-top:1px solid var(--border); padding-top:22px; }
-  .doc p { max-width:78ch; }
-  .doc li { margin:5px 0; }
-  .doc table { border-collapse:collapse; display:block; max-width:100%; overflow-x:auto; margin:16px 0; }
-  .doc th,.doc td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
-  .doc th { background:var(--code); }
-  code { background:var(--code); border-radius:4px; padding:2px 5px; font-size:.92em; }
-  pre { background:var(--code); border:1px solid var(--border); border-radius:8px; padding:14px 16px; overflow:auto; }
-  pre code { background:transparent; padding:0; }
-  .status { color:var(--muted); }
-  .error { color:#8a2f2f; background:#fff1f0; border:1px solid #e4b8b3; border-radius:8px; padding:12px 14px; }
-  footer { border-top:1px solid var(--border); padding:28px 0 48px; color:var(--muted); font-size:.9rem; }
-  @media (max-width:620px) { header .wrap { align-items:flex-start; flex-direction:column; } .toc ul { columns:1; } }
-</style>
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <strong>Rickard Åberg</strong>
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span>Rickard Åberg</a>
     <nav aria-label="Primary navigation">
-      <a href="index.html">CV</a>
+      <a href="index.html">CV (EN)</a>
+      <a href="sv.html" lang="sv">CV (SV)</a>
+      <a href="assignments.html">Assignments</a>
+      <a href="ai-engineering.html">AI engineering</a>
       <a href="code-standards.html" aria-current="page">Code standards</a>
+      <button id="theme-toggle" class="theme-toggle" type="button">☀ Light</button>
     </nav>
   </div>
 </header>
@@ -163,7 +132,10 @@
 
   loadDocuments().catch((error) => {
     document.querySelector("#status").remove();
-    document.querySelector("#documents").innerHTML = `<p class="error">The documents could not be loaded. Read the <a href="README.md">Markdown source files</a> directly. (${escapeHtml(error.message)})</p>`;
+    const localHint = location.protocol === "file:"
+      ? " (Browsers block <code>fetch()</code> on local <code>file://</code> URLs — run <code>python3 -m http.server</code> to preview locally, or view the live GitHub Pages site.)"
+      : ` (${escapeHtml(error.message)})`;
+    document.querySelector("#documents").innerHTML = `<p class="error">The documents could not be loaded.${localHint} Read the <a href="README.md">Markdown source files</a> directly.</p>`;
   });
 </script>
 </body>
