@@ -1,7 +1,7 @@
 (function () {
   const root = document.documentElement;
   const saved = localStorage.getItem("cv-theme");
-  const initial = saved || "dark";
+  const initial = saved || "light";
   root.setAttribute("data-theme", initial);
 
   function syncButton(btn) {
