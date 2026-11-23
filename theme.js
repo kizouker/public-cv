@@ -113,6 +113,18 @@
     });
 
     document.body.append(panel, fab);
+    const nav = document.querySelector("header nav");
+    if (nav) {
+      const navBtn = document.createElement("button");
+      navBtn.className = "theme-toggle";
+      navBtn.type = "button";
+      navBtn.textContent = "Themes";
+      navBtn.addEventListener("click", () => {
+        panel.hidden = !panel.hidden;
+        fab.setAttribute("aria-expanded", String(!panel.hidden));
+      });
+      nav.appendChild(navBtn);
+    }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
