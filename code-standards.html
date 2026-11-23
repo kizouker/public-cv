@@ -132,7 +132,10 @@
 
   loadDocuments().catch((error) => {
     document.querySelector("#status").remove();
-    document.querySelector("#documents").innerHTML = `<p class="error">The documents could not be loaded. Read the <a href="README.md">Markdown source files</a> directly. (${escapeHtml(error.message)})</p>`;
+    const localHint = location.protocol === "file:"
+      ? " (Browsers block <code>fetch()</code> on local <code>file://</code> URLs — run <code>python3 -m http.server</code> to preview locally, or view the live GitHub Pages site.)"
+      : ` (${escapeHtml(error.message)})`;
+    document.querySelector("#documents").innerHTML = `<p class="error">The documents could not be loaded.${localHint} Read the <a href="README.md">Markdown source files</a> directly.</p>`;
   });
 </script>
 </body>
