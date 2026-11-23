@@ -4,54 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rickard Åberg — Software Engineer &amp; Solution Architect</title>
-<meta name="description" content="Rickard Åberg — software engineer and solution architect with experience across development, integration, architecture, quality and DevOps.">
-<style>
-  :root { --bg:#f6f5f2; --panel:#fff; --fg:#1c1b19; --muted:#6b6862; --border:#d8d4cb; --accent:#1f6f78; --accent-soft:#e4f0ef; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; line-height:1.55; }
-  a { color:var(--accent); }
-  .wrap { max-width:920px; margin:0 auto; padding:0 20px; }
-  header { border-bottom:1px solid var(--border); }
-  header .wrap { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:14px 20px; }
-  header strong { font-size:1.05rem; }
-  nav { display:flex; gap:16px; flex-wrap:wrap; font-size:.9rem; }
-  nav a { color:var(--muted); text-decoration:none; }
-  .hero { padding:64px 0 48px; }
-  h1,h2,h3 { line-height:1.2; }
-  h1 { font-size:clamp(2.2rem,5vw,3.5rem); margin:0 0 12px; letter-spacing:-.03em; }
-  .subtitle { color:var(--muted); font-size:1.2rem; max-width:48rem; margin:0 0 24px; }
-  .buttons { display:flex; gap:12px; flex-wrap:wrap; }
-  .button { display:inline-block; border:1px solid var(--accent); border-radius:999px; padding:9px 17px; text-decoration:none; font-weight:650; }
-  .button.primary { background:var(--accent); color:white; }
-  section { border-top:1px solid var(--border); padding:38px 0; }
-  h2 { font-size:1.55rem; margin:0 0 18px; }
-  .lead { color:var(--muted); max-width:70ch; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; }
-  .card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:17px; }
-  .card h3 { font-size:1rem; margin:0 0 7px; }
-  .card p { color:var(--muted); margin:0; font-size:.92rem; }
-  .timeline { list-style:none; padding:0; margin:0; }
-  .timeline li { display:grid; grid-template-columns:145px 1fr; gap:18px; padding:13px 0; border-bottom:1px solid var(--border); }
-  .timeline li:last-child { border-bottom:0; }
-  .when { color:var(--muted); font-size:.9rem; }
-  .what strong { display:block; }
-  .what span { color:var(--muted); font-size:.92rem; }
-  .columns { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:22px; }
-  .columns h3 { font-size:.83rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
-  .columns ul { margin:0; padding-left:20px; }
-  .certs { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:12px; }
-  .cert { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:13px 15px; }
-  .cert strong { display:block; font-size:.93rem; }
-  .cert span { color:var(--muted); font-size:.84rem; }
-  footer { border-top:1px solid var(--border); padding:32px 0 52px; color:var(--muted); font-size:.9rem; }
-  @media (max-width:620px) { header .wrap { align-items:flex-start; flex-direction:column; } .timeline li { grid-template-columns:1fr; gap:2px; } }
-</style>
+<meta name="description" content="Rickard Åberg — software engineer and solution architect with experience across development, integration, architecture, quality, DevOps and AI engineering.">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <strong>Rickard Åberg</strong>
-    <nav>
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span>Rickard Åberg</a>
+    <nav aria-label="Primary navigation">
       <a href="#profile">Profile</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
@@ -59,6 +20,7 @@
       <a href="#education">Education</a>
       <a href="ai-engineering.html">AI engineering</a>
       <a href="code-standards.html">Code standards</a>
+      <button id="theme-toggle" class="theme-toggle" type="button">☾ Dark</button>
     </nav>
   </div>
 </header>
@@ -66,11 +28,19 @@
 <main>
   <section class="hero">
     <div class="wrap">
+      <div class="status-pill"><span class="pulse" aria-hidden="true"></span>Malmö, Sweden · AI, Backend &amp; Architecture</div>
       <h1>Software Engineer &amp; Solution Architect</h1>
-      <p class="subtitle">Software development · system integration · architecture · quality · DevOps</p>
+      <p class="subtitle">Software development · system integration · architecture · quality · DevOps · agentic AI engineering</p>
       <div class="buttons">
         <a class="button primary" href="https://www.linkedin.com/in/rickard-%C3%A5berg-9866891/" target="_blank" rel="noopener">Connect on LinkedIn →</a>
+        <a class="button" href="https://github.com/kizouker" target="_blank" rel="noopener">GitHub</a>
         <a class="button" href="ai-engineering.html">AI engineering (last 3 months) →</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>20+ yrs</strong><span>Software engineering &amp; integration</span></div>
+        <div class="stat"><strong>4 repos</strong><span>Public 2026 AI, MCP, Java &amp; Rust builds</span></div>
+        <div class="stat"><strong>~50 skills</strong><span>Reusable agent workflows authored</span></div>
+        <div class="stat"><strong>6+ harnesses</strong><span>Claude, AGY, Codex, Kiro, Muse, Ollama</span></div>
       </div>
     </div>
   </section>
@@ -79,11 +49,11 @@
     <div class="wrap">
       <h2>Profile</h2>
       <p class="lead">Rickard Åberg is a software engineer and solution architect with more than 20 years of experience across the software lifecycle. His background combines hands-on development with system integration, architecture, testing, release management and DevOps.</p>
-      <p class="lead">He has worked in consulting and product environments, moving between implementation, technical leadership, coordination and process improvement. Current interests include cloud platforms, secure delivery, modern web development and responsible use of AI-assisted engineering tools.</p>
+      <p class="lead">He has worked in consulting and product environments, moving between implementation, technical leadership, coordination and process improvement. Current focus areas include cloud platforms, secure delivery, modern web development and disciplined, test-verified AI engineering.</p>
       <div class="cards">
-        <article class="card"><h3>Build</h3><p>Java/JEE, .NET, JavaScript, React, Angular, Vue, Python and SQL.</p></article>
-        <article class="card"><h3>Connect</h3><p>Enterprise integration, APIs, messaging, distributed systems and technical coordination.</p></article>
-        <article class="card"><h3>Improve</h3><p>Quality engineering, testing, CI/CD, release management, DevOps and collaborative ways of working.</p></article>
+        <article class="card"><span class="eyebrow">01 · Build</span><h3>Engineering</h3><p>Java/JEE, Spring Boot, .NET, TypeScript, React, Angular, Vue, Python, Rust and SQL.</p></article>
+        <article class="card amber"><span class="eyebrow">02 · Connect</span><h3>Integration &amp; MCP</h3><p>Enterprise integration, APIs, messaging, distributed systems, Model Context Protocol servers and technical coordination.</p></article>
+        <article class="card indigo"><span class="eyebrow">03 · Improve</span><h3>Quality &amp; AI Flows</h3><p>Spec-driven TDD, CI/CD, release management, DevOps, architecture reviews and verifiable multi-agent workflows.</p></article>
       </div>
     </div>
   </section>
@@ -91,14 +61,34 @@
   <section id="projects">
     <div class="wrap">
       <h2>Recent Projects (2026)</h2>
-      <p class="lead">Open-source work from the last months, all public on <a href="https://github.com/kizouker" target="_blank" rel="noopener">GitHub</a>. Built with AI-assisted engineering, tests and CI from the start.</p>
-      <div class="cards">
-        <article class="card"><h3><a href="https://github.com/kizouker/adaptive-IVR-agent" target="_blank" rel="noopener">Holdmate — adaptive IVR agent</a></h3><p>Meta Global AI Hackathon 2026. A voice agent that learns to navigate Swedish government phone menus and waits in the queue for you, handing over before BankID. Python, whisper.cpp speech recognition, finite-state practice robot with BFS exploration, Meta Muse Spark, React live board, iOS/watchOS app, Gherkin + pytest, Docker. <a href="https://youtu.be/orxqS8rnxt0" target="_blank" rel="noopener">Demo video</a>.</p></article>
-        <article class="card"><h3><a href="https://github.com/kizouker/swedish-jobs-mcp" target="_blank" rel="noopener">swedish-jobs-mcp</a></h3><p>Open-source MCP server, published on <a href="https://pypi.org/project/swedish-jobs-mcp/" target="_blank" rel="noopener">PyPI</a>, that lets AI assistants (Claude, Codex, Cursor) search Swedish job ads through Arbetsförmedlingen's open JobTech APIs. Python, uv, paging, pytest, GitHub Actions on Python 3.10–3.13.</p></article>
-        <article class="card"><h3><a href="https://github.com/kizouker/hrv-service" target="_blank" rel="noopener">hrv-service</a></h3><p>REST API for heart-rate-variability readings from iPhone and Apple Watch (HealthKit sync). Java 21, Spring Boot 3.4, PostgreSQL, JWT, Swagger/OpenAPI, JaCoCo coverage gate, Docker, Azure Bicep and a Kotlin ops TUI.</p></article>
-        <article class="card"><h3><a href="https://github.com/kizouker/paula-lib" target="_blank" rel="noopener">paula-lib</a></h3><p>Kiroween 2026. An agent-assisted ProTracker 2-style music tracker: describe a beat in plain language and an AI agent writes editable patterns. C replayer wrapped in Rust, MCP server, WebAssembly, 8-bit resampling and dither. <a href="https://kizouker.github.io/paula-lib/" target="_blank" rel="noopener">Website</a>.</p></article>
+      <p class="lead">Open-source work from the last months, all public on <a href="https://github.com/kizouker" target="_blank" rel="noopener">GitHub</a>. Built with spec-driven AI engineering, automated tests and CI from day one.</p>
+      <div class="cards two">
+        <article class="card">
+          <span class="eyebrow">Meta Global AI Hackathon 2026 · Voice AI</span>
+          <h3><a href="https://github.com/kizouker/adaptive-IVR-agent" target="_blank" rel="noopener">Holdmate — adaptive IVR agent</a></h3>
+          <p>A voice agent that learns to navigate Swedish government phone menus and waits in the queue for you, handing over cleanly before BankID. Includes a 43-line finite-state practice robot with BFS exploration, live React board, iOS/watchOS queue ticket and <a href="https://youtu.be/orxqS8rnxt0" target="_blank" rel="noopener">3-min demo video</a>.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">whisper.cpp</span><span class="tag">Meta Muse Spark</span><span class="tag">React</span><span class="tag">Swift</span><span class="tag">Gherkin + pytest</span><span class="tag">Docker</span></div>
+        </article>
+        <article class="card emerald">
+          <span class="eyebrow">PyPI Package · Open-Source MCP</span>
+          <h3><a href="https://github.com/kizouker/swedish-jobs-mcp" target="_blank" rel="noopener">swedish-jobs-mcp</a></h3>
+          <p>MCP server published on <a href="https://pypi.org/project/swedish-jobs-mcp/" target="_blank" rel="noopener">PyPI</a> that lets AI assistants (Claude, Codex, Cursor) search Swedish job ads via Arbetsförmedlingen's open JobTech APIs. Local stdio transport, context-safe paging and CI across Python 3.10–3.13.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">uv / uvx</span><span class="tag">PyPI</span><span class="tag">pytest</span><span class="tag">GitHub Actions</span></div>
+        </article>
+        <article class="card amber">
+          <span class="eyebrow">Backend · Cloud &amp; HealthKit</span>
+          <h3><a href="https://github.com/kizouker/hrv-service" target="_blank" rel="noopener">hrv-service</a></h3>
+          <p>REST API for heart-rate-variability readings synced from iPhone and Apple Watch (HealthKit). Features JWT auth, Swagger/OpenAPI, JaCoCo 70% coverage gate, Azure Bicep infrastructure and a Kotlin Mordant operations TUI.</p>
+          <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3.4</span><span class="tag">PostgreSQL</span><span class="tag">JWT</span><span class="tag">Docker</span><span class="tag">Azure Bicep</span><span class="tag">Kotlin</span></div>
+        </article>
+        <article class="card indigo">
+          <span class="eyebrow">Kiroween 2026 · Creative Co-Pilot</span>
+          <h3><a href="https://github.com/kizouker/paula-lib" target="_blank" rel="noopener">paula-lib</a></h3>
+          <p>Agent-assisted ProTracker 2-style music tracker: describe a beat or bassline in plain language and an AI agent writes editable patterns back into the grid. Includes 8-bit resampling/dither DSP and <a href="https://kizouker.github.io/paula-lib/" target="_blank" rel="noopener">project website</a>.</p>
+          <div class="tags"><span class="tag">C</span><span class="tag">Rust</span><span class="tag">MCP</span><span class="tag">WebAssembly</span><span class="tag">Audio DSP</span></div>
+        </article>
       </div>
-      <p class="lead" style="margin-top:18px">Want the engineering story behind these projects? Read <a href="ai-engineering.html">AI Engineering — Last 3 Months</a> (custom skills built, lessons learned, design questions &amp; answers, and harnesses used) or the <a href="code-standards.html">Python Engineering Standard</a>.</p>
+      <p class="lead" style="margin-top:20px">Want the engineering story behind these builds? Read <a href="ai-engineering.html">AI Engineering — Last 3 Months</a> (custom skills, lessons learned, design Q&amp;A and harnesses) or the <a href="code-standards.html">Python Engineering Standard</a>.</p>
     </div>
   </section>
 
@@ -106,16 +96,16 @@
     <div class="wrap">
       <h2>Experience</h2>
       <ul class="timeline">
-        <li><span class="when">2026</span><span class="what"><strong>Field Officer</strong><span>Skogsstyrelsen — nature conservation and forest management; coordinated a multilingual work team.</span></span></li>
-        <li><span class="when">2021–2022</span><span class="what"><strong>Fullstack Developer</strong><span>ADBSafegate AB, Malmö — Angular, TypeScript, Azure and SAFe.</span></span></li>
-        <li><span class="when">2021</span><span class="what"><strong>Fullstack Developer</strong><span>Zaplox AB, Lund — Vue.js, Node.js, JavaScript, CSS and AWS.</span></span></li>
-        <li><span class="when">2017–2018</span><span class="what"><strong>Senior Software Engineer</strong><span>Verisure Innovation, Malmö — Java, Android, Docker/Kubernetes and GDPR compliance work.</span></span></li>
-        <li><span class="when">2012–2017</span><span class="what"><strong>Managing Consultant</strong><span>Bouvet Syd AB, Malmö — Java development, team leadership, configuration management and DevOps.</span></span></li>
-        <li><span class="when">2011</span><span class="what"><strong>Solution Architect</strong><span>IKEA IT, Helsingborg — SaaS feasibility evaluation for the Enterprise Architecture Board.</span></span></li>
-        <li><span class="when">2011</span><span class="what"><strong>System Integration Specialist</strong><span>Hi3G (Tre), Stockholm — application lead for a 15-system EAI integration layer.</span></span></li>
-        <li><span class="when">2004–2012</span><span class="what"><strong>Consultant — Integration &amp; Test</strong><span>Cybercom, Malmö/Oslo — Java EE, TIBCO, integration testing and architecture documentation.</span></span></li>
-        <li><span class="when">2003–2004</span><span class="what"><strong>Research Engineer / Thésard</strong><span>École des Mines de Nantes, France — MSc thesis on OS kernel evolution using temporal logic and AOP.</span></span></li>
-        <li><span class="when">2002</span><span class="what"><strong>Embedded Developer</strong><span>HemoCue, Ängelholm.</span></span></li>
+        <li><span class="when">2026</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Field Officer</strong><span>Skogsstyrelsen — nature conservation and forest management; coordinated a multilingual work team.</span></span></li>
+        <li><span class="when">2021–2022</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Fullstack Developer</strong><span>ADBSafegate AB, Malmö — Angular, TypeScript, Azure and SAFe.</span></span></li>
+        <li><span class="when">2021</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Fullstack Developer</strong><span>Zaplox AB, Lund — Vue.js, Node.js, JavaScript, CSS and AWS.</span></span></li>
+        <li><span class="when">2017–2018</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Senior Software Engineer</strong><span>Verisure Innovation, Malmö — Java, Android, Docker/Kubernetes and GDPR compliance work.</span></span></li>
+        <li><span class="when">2012–2017</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Managing Consultant</strong><span>Bouvet Syd AB, Malmö — Java development, team leadership, configuration management and DevOps.</span></span></li>
+        <li><span class="when">2011</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Solution Architect</strong><span>IKEA IT, Helsingborg — SaaS feasibility evaluation for the Enterprise Architecture Board.</span></span></li>
+        <li><span class="when">2011</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>System Integration Specialist</strong><span>Hi3G (Tre), Stockholm — application lead for a 15-system EAI integration layer.</span></span></li>
+        <li><span class="when">2004–2012</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Consultant — Integration &amp; Test</strong><span>Cybercom, Malmö/Oslo — Java EE, TIBCO, integration testing and architecture documentation.</span></span></li>
+        <li><span class="when">2003–2004</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Research Engineer / Thésard</strong><span>École des Mines de Nantes, France — MSc thesis on OS kernel evolution using temporal logic and AOP.</span></span></li>
+        <li><span class="when">2002</span><span class="dot" aria-hidden="true"></span><span class="what"><strong>Embedded Developer</strong><span>HemoCue, Ängelholm.</span></span></li>
       </ul>
     </div>
   </section>
@@ -124,11 +114,11 @@
     <div class="wrap">
       <h2>Skills &amp; Technologies</h2>
       <div class="columns">
-        <div><h3>Development</h3><ul><li>Java/JEE/Spring/Android</li><li>.NET Core / C#</li><li>JavaScript, React, Angular, Vue</li><li>Python and SQL</li><li>Rust, C and Kotlin</li></ul></div>
-        <div><h3>AI &amp; agents</h3><ul><li>Model Context Protocol (MCP) servers</li><li>Multi-agent LLM workflows</li><li>Ollama local inference and cloud LLM APIs</li><li>Speech recognition (whisper.cpp)</li></ul></div>
-        <div><h3>Delivery</h3><ul><li>Git, Gerrit, GitHub and GitLab</li><li>Jenkins, SonarQube and Artifactory</li><li>Docker and Kubernetes</li><li>Azure and AWS</li></ul></div>
-        <div><h3>Integration</h3><ul><li>TIBCO and Mule ESB</li><li>JMS and RabbitMQ</li><li>REST, SOAP and JSON/XML</li><li>Postman and SoapUI</li></ul></div>
-        <div><h3>Ways of working</h3><ul><li>Scrum and Kanban</li><li>DevOps and continuous delivery</li><li>ITIL and problem management</li><li>Testing and quality assurance</li></ul></div>
+        <div class="col-box"><h3>Development</h3><ul><li>Java / JEE / Spring / Android</li><li>.NET Core / C#</li><li>JavaScript, React, Angular, Vue</li><li>Python and SQL</li><li>Rust, C and Kotlin</li></ul></div>
+        <div class="col-box"><h3>AI &amp; Agents</h3><ul><li>Model Context Protocol (MCP) servers</li><li>Multi-agent LLM workflows</li><li>Ollama local inference &amp; cloud APIs</li><li>Speech recognition (whisper.cpp)</li></ul></div>
+        <div class="col-box"><h3>Delivery</h3><ul><li>Git, Gerrit, GitHub and GitLab</li><li>Jenkins, SonarQube and Artifactory</li><li>Docker and Kubernetes</li><li>Azure and AWS</li></ul></div>
+        <div class="col-box"><h3>Integration</h3><ul><li>TIBCO and Mule ESB</li><li>JMS and RabbitMQ</li><li>REST, SOAP and JSON/XML</li><li>Postman and SoapUI</li></ul></div>
+        <div class="col-box"><h3>Ways of Working</h3><ul><li>Scrum and Kanban</li><li>DevOps and continuous delivery</li><li>ITIL and problem management</li><li>Testing and quality assurance</li></ul></div>
       </div>
     </div>
   </section>
@@ -149,8 +139,8 @@
 
 <footer>
   <div class="wrap">
-    <p>Rickard Åberg · Malmö, Sweden</p>
-    <p><a href="https://www.linkedin.com/in/rickard-%C3%A5berg-9866891/" target="_blank" rel="noopener">linkedin.com/in/rickard-åberg</a></p>
+    <span>Rickard Åberg · Malmö, Sweden</span>
+    <span><a href="https://www.linkedin.com/in/rickard-%C3%A5berg-9866891/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/kizouker" target="_blank" rel="noopener">GitHub</a> · <a href="ai-engineering.html">AI engineering</a></span>
   </div>
 </footer>
 </body>
